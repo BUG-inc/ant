@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1026.0
+margin_bottom = 597.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
