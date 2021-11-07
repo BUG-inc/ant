@@ -3,24 +3,9 @@
 [ext_resource path="res://entities/ant.gd" type="Script" id=1]
 [ext_resource path="res://assets/ant_sprites.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 16.6732
-height = 75.6113
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 96, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 96, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 96, 96, 96 )
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 14.1229
+height = 45.9387
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -36,6 +21,21 @@ region = Rect2( 96, 192, 96, 96 )
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 192, 192, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 96, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 96, 96, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 192, 96, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
@@ -70,33 +70,40 @@ region = Rect2( 192, 0, 96, 96 )
 [sub_resource type="SpriteFrames" id=14]
 resource_local_to_scene = true
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
 "name": "right",
-"speed": 5.0
+"speed": 3.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "left",
+"speed": 3.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "up",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
 "name": "down",
-"speed": 5.0
+"speed": 3.0
 } ]
 
 [node name="ant" type="KinematicBody2D"]
+scale = Vector2( 0.4, 0.4 )
+collision_mask = 2
 script = ExtResource( 1 )
+speed = 50
+change_dir_interval = 1.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+rotation = 1.57254
+shape = SubResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
-animation = "up"
+animation = "left"
+frame = 2
+playing = true
