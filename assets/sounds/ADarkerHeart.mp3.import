@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ADarkerHeart.mp3-4563e9f736fb4efeb79e13c410e0d686.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ADarkerHeart.mp3"
+dest_files=[ "res://.import/ADarkerHeart.mp3-4563e9f736fb4efeb79e13c410e0d686.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

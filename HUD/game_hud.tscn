@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Font/bold_font.tres" type="DynamicFont" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Fixed text" type="Label" parent="."]
+margin_right = 371.0
+margin_bottom = 141.0
+custom_fonts/font = ExtResource( 1 )
+text = "Ants: 
+Resources: "
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AntNo" type="Label" parent="."]
+margin_left = 160.592
+margin_top = 3.3653
+margin_right = 271.592
+margin_bottom = 72.3653
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResourceNo" type="Label" parent="."]
+margin_left = 285.592
+margin_top = 76.1122
+margin_right = 440.592
+margin_bottom = 145.112
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}

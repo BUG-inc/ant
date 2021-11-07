@@ -9,6 +9,10 @@ var _time_since_change := 0.0
 var velocity = Vector2()
 
 
+func _ready():
+	_dir = _change_dir()
+
+
 func _process(_delta: float) -> void:
 	_update_animation(_dir)
 

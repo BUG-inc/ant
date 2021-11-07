@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://entities/ant.gd" type="Script" id=1]
 [ext_resource path="res://assets/ant_sprites.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=15]
 radius = 14.1229
@@ -105,5 +106,8 @@ shape = SubResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
 animation = "left"
-frame = 2
+frame = 1
 playing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
