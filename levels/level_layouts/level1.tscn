@@ -1444,9 +1444,9 @@ position = Vector2( 45.6715, 506.577 )
 script = ExtResource( 1 )
 scroll_speed = 250
 min_x = 50
-min_y = 50
+min_y = 200
 max_x = 1000
-max_y = 600
+max_y = 800
 
 [node name="camera" type="Camera2D" parent="camera_position"]
 current = true
