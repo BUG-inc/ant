@@ -7,8 +7,11 @@
 
 [node name="base_ant" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-speed = 150
+speed = 100
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="base_ant"]
+scale = Vector2( 2.5, 2.5 )
 current = true
-zoom = Vector2( 0.2, 0.2 )
+zoom = Vector2( 0.3, 0.3 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
