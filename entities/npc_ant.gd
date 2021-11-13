@@ -1,20 +1,13 @@
-extends "res://entities/entity.gd"
+extends "res://entities/base_ant.gd"
 
 
-export (int) var speed = 200
 export (float) var change_dir_interval = 1.0
 var _gen = RandomNumberGenerator.new()
-var _dir = Vector2()
 var _time_since_change := 0.0
-var velocity = Vector2()
 
 
 func _ready():
 	_dir = _change_dir()
-
-
-func _process(_delta: float) -> void:
-	_update_animation(_dir)
 
 
 func _physics_process(delta: float) -> void:
@@ -32,18 +25,3 @@ func _change_dir() -> float:
 	var dir = Vector2(_gen.randf_range(-1, 1), _gen.randf_range(-1, 1))  # bias towards goal
 	dir = dir.normalized()
 	return dir
-
-
-func _update_animation(dir: Vector2) -> void:
-	if dir.x > 0:
-		$AnimatedSprite.flip_h = false
-
-	if dir.x < 0:
-		$AnimatedSprite.flip_h = true
-	
-	if is_equal_approx(velocity.length(), 0):
-		$AnimatedSprite.animation = "idle"
-	else:
-		$AnimatedSprite.animation = "walking"
-
-	$AnimatedSprite.playing = true

@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://entities/ant.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/characters/microant_v0.png" type="Texture" id=2]
-[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=19]
 radius = 35.1521
@@ -28,12 +26,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="ant" type="KinematicBody2D"]
+[node name="base_ant" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.4 )
 collision_mask = 2
-script = ExtResource( 1 )
-speed = 50
-change_dir_interval = 1.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57254
@@ -44,6 +39,3 @@ scale = Vector2( 5, 5 )
 frames = SubResource( 18 )
 animation = "walking"
 playing = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )

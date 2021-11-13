@@ -1,12 +1,12 @@
 extends Node2D
 
-var _ant_scene = load("res://entities/ant.tscn")
+var _npc_ant = load("res://entities/npc_ant.tscn")
 
 func _process(_delta):
 	if Input.is_action_pressed("spawn"):
 		var pos = get_viewport().get_mouse_position()
 
-		var new_ant = _ant_scene.instance()
+		var new_ant = _npc_ant.instance()
 		var level_pos = $Level.get_global_transform()
 		new_ant.position = pos - level_pos.get_origin()
 		new_ant.add_to_group("ants")
