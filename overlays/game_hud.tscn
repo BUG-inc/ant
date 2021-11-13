@@ -16,10 +16,10 @@ __meta__ = {
 }
 
 [node name="AntNo" type="Label" parent="."]
-margin_left = 160.592
-margin_top = 3.3653
-margin_right = 271.592
-margin_bottom = 72.3653
+margin_left = 88.9392
+margin_top = 2.03368
+margin_right = 199.939
+margin_bottom = 71.0337
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {
@@ -27,10 +27,10 @@ __meta__ = {
 }
 
 [node name="ResourceNo" type="Label" parent="."]
-margin_left = 285.592
-margin_top = 76.1122
-margin_right = 440.592
-margin_bottom = 145.112
+margin_left = 176.934
+margin_top = 47.1582
+margin_right = 331.934
+margin_bottom = 116.158
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {

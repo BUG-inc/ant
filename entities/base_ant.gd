@@ -15,11 +15,14 @@ func _update_animation(dir: Vector2) -> void:
 	if dir.x < 0:
 		$AnimatedSprite.flip_h = true
 
-	if dir.y > 0:
-		$AnimatedSprite.flip_v = true
+	# if dir.y > 0:
+	# 	$AnimatedSprite.flip_v = true
 	
-	if dir.y < 0:
-		$AnimatedSprite.flip_v = false
+	# if dir.y < 0:
+	# 	$AnimatedSprite.flip_v = false
+
+	if !is_equal_approx(velocity.length(), 0):
+		rotation = atan2(velocity.y, velocity.x) + PI/2
 	
 	if is_equal_approx(velocity.length(), 0):
 		$AnimatedSprite.animation = "idle"

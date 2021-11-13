@@ -1,7 +1,7 @@
 extends "res://entities/base_ant.gd"
 
 
-export (float) var change_dir_interval = 1.0
+export (float) var change_dir_interval = 1.0 setget change_dir
 var _gen = RandomNumberGenerator.new()
 var _time_since_change := 0.0
 
@@ -9,6 +9,8 @@ var _time_since_change := 0.0
 func _ready():
 	_dir = _change_dir()
 
+func change_dir(val: float):
+	change_dir_interval = val
 
 func _physics_process(delta: float) -> void:
 	_time_since_change += delta
