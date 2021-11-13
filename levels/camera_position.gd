@@ -1,6 +1,10 @@
 extends Node2D
 
 export var scroll_speed = 100
+export var min_x = 0
+export var min_y = 0
+export var max_x = 100000
+export var max_y = 100000
 
 func _physics_process(delta: float) -> void:
 	var scroll_dir = Vector2()
@@ -20,3 +24,6 @@ func _physics_process(delta: float) -> void:
 	scroll_dir = scroll_dir.normalized()
 	position.x += scroll_speed * scroll_dir.x * delta
 	position.y += scroll_speed * scroll_dir.y * delta
+
+	position.x = clamp(position.x, min_x, max_x)
+	position.y = clamp(position.y, min_y, max_y)

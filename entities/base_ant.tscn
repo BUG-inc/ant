@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/sprites/characters/microant_v0.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=19]
-radius = 35.1521
+radius = 13.5938
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
@@ -35,7 +35,7 @@ rotation = 1.57254
 shape = SubResource( 19 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 5, 5 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 18 )
 animation = "walking"
 playing = true
