@@ -12,6 +12,6 @@ speed = 75
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
 current = true
-zoom = Vector2( 0.1, 0.1 )
+zoom = Vector2( 0.15, 0.15 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
