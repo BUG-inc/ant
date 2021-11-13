@@ -34,26 +34,8 @@ func _management_gui():
 func _management_loop(_delta):
 	if Input.is_action_pressed("spawn"):
 		var pos = get_local_mouse_position()
-		var new_ant = _fat_npc_ant.instance()
-		new_ant.position = pos
-		new_ant.add_to_group("ants")
-		if _can_play_sound():
-			new_ant.get_node("AudioStreamPlayer").playing = true
-
-		$Level.add_child(new_ant)
+		$Level/AntMaster.spawn_npc_ant(pos)
 
 	if Input.is_action_just_pressed("kill"):
-		var ants = get_tree().get_nodes_in_group("ants")
-		for ant in ants:
-			ant.queue_free()
-
+		$Level/AntMaster.killall()
 		$Level.position = Vector2()
-
-
-func _can_play_sound() -> bool:
-	var ants = get_tree().get_nodes_in_group("ants")
-	for ant in ants:
-		if ant.get_node("AudioStreamPlayer").playing:
-			return false
-
-	return true

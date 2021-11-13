@@ -4,6 +4,7 @@
 [ext_resource path="res://levels/level_control_script.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/background/dirt_bg_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/background/ant_bg_v2.png" type="Texture" id=4]
+[ext_resource path="res://entities/ant_master.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/foreground/ant_foreground_v4_eigen.png" type="Texture" id=6]
 
 [sub_resource type="TileSet" id=1]
