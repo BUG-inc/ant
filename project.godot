@@ -30,6 +30,10 @@ config/name="EntityExperiment"
 run/main_scene="res://main.tscn"
 config/icon="res://assets/icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/height=720
