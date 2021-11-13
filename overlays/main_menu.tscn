@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Font/bold_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Font/OpenSans-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Title" type="Label" parent="."]
+margin_right = 1024.0
+margin_bottom = 721.0
+custom_fonts/font = SubResource( 1 )
+text = "Ant Manager"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtitle" type="Label" parent="Title"]
+margin_left = -1.0
+margin_top = 140.0
+margin_right = 1023.0
+margin_bottom = 191.0
+custom_fonts/font = ExtResource( 1 )
+text = "The colony management simulator"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Title"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.0
+margin_top = -26.5
+margin_right = 132.0
+margin_bottom = 26.5
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}

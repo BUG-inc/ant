@@ -2,8 +2,8 @@
 
 [ext_resource path="res://levels/test_levels/switch_camera_test.gd" type="Script" id=1]
 [ext_resource path="res://entities/player_ant.tscn" type="PackedScene" id=2]
-[ext_resource path="res://levels/level1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://HUD/game_hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/level_layouts/level1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://overlays/game_hud.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
