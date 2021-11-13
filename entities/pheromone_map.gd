@@ -15,9 +15,9 @@ var cells = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# initialize cells
-	for h in range(height):
+	for _h in range(height):
 		cells.append([])
-		for w in range(width):
+		for _w in range(width):
 			cells[-1].append(0.0)
 
 func get_cell_index(position: Vector2, pos_in_local_frame: bool = false):
