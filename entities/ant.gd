@@ -36,9 +36,14 @@ func _change_dir() -> float:
 
 func _update_animation(dir: Vector2) -> void:
 	if dir.x > 0:
-		$AnimatedSprite.animation = "right"
+		$AnimatedSprite.flip_h = false
 
 	if dir.x < 0:
-		$AnimatedSprite.animation = "left"
+		$AnimatedSprite.flip_h = true
 	
+	if is_equal_approx(velocity.length(), 0):
+		$AnimatedSprite.animation = "idle"
+	else:
+		$AnimatedSprite.animation = "walking"
+
 	$AnimatedSprite.playing = true

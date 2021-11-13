@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ant_tilemap.png-13747cf47c8ba91f24373a9676831c36.stex"
+path="res://.import/microant_v0.png-6b51abdd92ed389ab1e980f5335f8731.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ant_tilemap.png"
-dest_files=[ "res://.import/ant_tilemap.png-13747cf47c8ba91f24373a9676831c36.stex" ]
+source_file="res://assets/sprites/characters/microant_v0.png"
+dest_files=[ "res://.import/microant_v0.png-6b51abdd92ed389ab1e980f5335f8731.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
