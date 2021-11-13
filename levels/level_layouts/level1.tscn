@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/camera_position.gd" type="Script" id=1]
 [ext_resource path="res://levels/level_control_script.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/background/dirt_bg_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/background/ant_bg_v2.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/foreground/ant_foreground_v4_eigen.png" type="Texture" id=6]
+[ext_resource path="res://entities/ant_master.tscn" type="PackedScene" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "dirt_bg_1.png 0"
@@ -465,7 +466,6 @@ __meta__ = {
 }
 
 [node name="camera_position" type="Position2D" parent="."]
-position = Vector2( 45.6715, 506.577 )
 script = ExtResource( 1 )
 scroll_speed = 250
 min_x = -10
@@ -474,6 +474,7 @@ max_x = 1000
 max_y = 600
 
 [node name="camera" type="Camera2D" parent="camera_position"]
+anchor_mode = 0
 current = true
 zoom = Vector2( 0.5, 0.5 )
 limit_smoothed = true
