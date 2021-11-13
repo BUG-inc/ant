@@ -1,95 +1,31 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/ant.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/ant_sprites.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/characters/microant_v0.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
 
-[sub_resource type="CapsuleShape2D" id=15]
-radius = 14.1229
-height = 45.9387
+[sub_resource type="CircleShape2D" id=19]
+radius = 35.1521
 
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 192, 96, 96 )
+region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 2 )
-region = Rect2( 96, 192, 96, 96 )
+region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 192, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 96, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 96, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 96, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 288, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 288, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 288, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 0, 96, 96 )
-
-[sub_resource type="SpriteFrames" id=14]
-resource_local_to_scene = true
+[sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 16 ) ],
 "loop": true,
-"name": "right",
-"speed": 3.0
+"name": "idle",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 17 ) ],
 "loop": true,
-"name": "left",
-"speed": 3.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "up",
-"speed": 3.0
-}, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
-"loop": true,
-"name": "down",
-"speed": 3.0
+"name": "walking",
+"speed": 5.0
 } ]
 
 [node name="ant" type="KinematicBody2D"]
@@ -101,12 +37,12 @@ change_dir_interval = 1.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57254
-shape = SubResource( 15 )
+shape = SubResource( 19 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 14 )
-animation = "left"
-frame = 1
+scale = Vector2( 5, 5 )
+frames = SubResource( 18 )
+animation = "walking"
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
