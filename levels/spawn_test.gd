@@ -10,7 +10,7 @@ func _process(_delta):
 		var new_ant
 
 		if tick % 2 == 0:
-			new_ant = _npc_ant.instance()
+			new_ant = _fat_npc_ant.instance()
 		else:
 			new_ant = _fat_npc_ant.instance()
 		
