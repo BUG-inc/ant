@@ -46,3 +46,10 @@ text = "PLAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button2" type="Button" parent="Title"]
+margin_left = 380.0
+margin_top = 415.0
+margin_right = 644.0
+margin_bottom = 468.0
+text = "Lore / How to Play"
