@@ -15,7 +15,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 8.80857
+radius = 5.81198
 height = 8.42797
 
 [node name="Queen" type="KinematicBody2D"]

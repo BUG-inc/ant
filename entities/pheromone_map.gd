@@ -61,13 +61,14 @@ func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 		cells[cell_index[0]][cell_index[1]] += increment
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("add_pheromone"):
 		var cell_index = get_cell_index(get_local_mouse_position(), true)
 		if cell_index == null:
 			return
 		cells[cell_index[0]][cell_index[1]] += PHEROMONE_INCREMENT
 		update()
+
 
 func _draw():
 	var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
@@ -79,3 +80,9 @@ func _draw():
 			color.r = cells[h][w]
 			color.a = cells[h][w]
 			draw_rect(cell_rect, color)
+
+
+func reset_cells():
+	for row in cells:
+		for cell in row:
+			cell = 0.0

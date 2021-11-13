@@ -17,6 +17,8 @@ func spawn_npc_ant(position: Vector2):
 func killall():
 	for ant in get_tree().get_nodes_in_group("ants"):
 		ant.queue_free()
+
+	$PheromoneMap.reset_cells()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
