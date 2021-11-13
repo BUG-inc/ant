@@ -6,7 +6,7 @@ var tick = 0
 
 func _process(_delta):
 	if Input.is_action_pressed("spawn"):
-		var pos = get_viewport().get_mouse_position()
+		var pos = get_local_mouse_position()
 		var new_ant
 
 		if tick % 2 == 0:
@@ -15,8 +15,7 @@ func _process(_delta):
 			new_ant = _fat_npc_ant.instance()
 		
 		tick += 1
-		var level_pos = $Level.get_global_transform()
-		new_ant.position = pos - level_pos.get_origin()
+		new_ant.position = pos
 		new_ant.add_to_group("ants")
 		if _can_play_sound():
 			new_ant.get_node("AudioStreamPlayer").playing = true

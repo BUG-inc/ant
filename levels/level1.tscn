@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://levels/camera_position.gd" type="Script" id=1]
-[ext_resource path="res://assets/sounds/ADarkerHeart.mp3" type="AudioStream" id=2]
 [ext_resource path="res://assets/sprites/background/dirt_bg_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/background/ant_bg_v2.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/foreground/ant_fg_v2.png" type="Texture" id=5]
@@ -63,14 +62,14 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 0/z_index = 0
 
 [node name="ant_test_level" type="Node2D"]
+
+[node name="camera_position" type="Position2D" parent="."]
 script = ExtResource( 1 )
-scroll_speed = 300
+scroll_speed = 250
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-volume_db = -10.0
+[node name="camera" type="Camera2D" parent="camera_position"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="Background" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
