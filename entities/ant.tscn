@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://entities/ant.gd" type="Script" id=1]
-[ext_resource path="res://assets/ant_sprites.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/ant_sprites.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=15]

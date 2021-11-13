@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wasteland_Mountains_1.png-61b07f5243a8bf0f2ded9b63c62a122a.stex"
+path="res://.import/ant_sprites.png-6d12c25b65a018a3336a6b8c866a4806.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Wasteland_Mountains_1.png"
-dest_files=[ "res://.import/Wasteland_Mountains_1.png-61b07f5243a8bf0f2ded9b63c62a122a.stex" ]
+source_file="res://assets/sprites/ant_sprites.png"
+dest_files=[ "res://.import/ant_sprites.png-6d12c25b65a018a3336a6b8c866a4806.stex" ]
 
 [params]
 
