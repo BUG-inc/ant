@@ -51,4 +51,5 @@ shape = SubResource( 19 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 18 )
 animation = "walking"
+frame = 3
 playing = true
