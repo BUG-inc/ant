@@ -7,3 +7,8 @@
 
 [node name="base_ant" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+speed = 150
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.2, 0.2 )
