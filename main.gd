@@ -1,6 +1,6 @@
 extends Node2D
 
-var _swap_test_level = load("res://levels/test_levels/switch_camera_test.tscn")
+var _swap_test_level = load("res://levels/test_levels/queen_test.tscn")
 
 func _on_Button_pressed() -> void:
 	$menu.queue_free()

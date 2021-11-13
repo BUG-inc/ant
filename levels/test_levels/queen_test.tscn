@@ -11,10 +11,10 @@ script = ExtResource( 3 )
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
 
-[node name="Queen" parent="." instance=ExtResource( 1 )]
-position = Vector2( 54.9746, 504.746 )
-
 [node name="player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 51.6177, 540 )
+
+[node name="Queen" parent="." instance=ExtResource( 1 )]
+position = Vector2( 54.9746, 504.746 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
