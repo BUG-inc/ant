@@ -1,5 +1,9 @@
 extends Node2D
 
+var _swap_test_level = load("res://levels/test_levels/switch_camera_test.tscn")
 
-func _ready() -> void:
-	pass
+func _on_Button_pressed() -> void:
+	$menu.queue_free()
+	$TileMap.queue_free()
+	$hud_ants.queue_free()
+	add_child(_swap_test_level.instance())
