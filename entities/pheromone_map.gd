@@ -1,6 +1,6 @@
 extends Node2D
 
-
+class_name PheromoneMap
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -26,22 +26,34 @@ func get_cell_index(position: Vector2, pos_in_local_frame: bool = false):
 	Returns null if out of range.
 	"""
 	if not pos_in_local_frame:
-		position = transform.inverse() * position
+		position = get_global_transform().inverse() * position
 	var cell_index = [int(position.y / cell_height), int(position.x / cell_width)]
 	if cell_index[0] < 0 or cell_index[0] >= height:
 		return null
 	if cell_index[1] < 0 or cell_index[1] >= width:
 		return null
 	return cell_index
-	
-func get_pheromone_level(position: Vector2) -> float:
+
+func get_cell_position(row: int, column: int) -> Vector2:
+	return get_global_transform() * Vector2((column + 0.5) * cell_width, (row + 0.5) * cell_height)
+
+func get_pheromone_levels(position: Vector2, radius: int) -> Array:
 	"""
-	Return the pheromone level at a global position
+	Return the pheromone levels within a neighbourhood of the given radius.
 	"""
 	var cell_index = get_cell_index(position)
-	if cell_index != null:
-		return cells[cell_index[0]][cell_index[1]]
-	return 0.0
+	if cell_index == null:
+		# TODO figure out what to do then
+		return []
+	var values = []
+	var positions = []
+	for h in range(max(cell_index[0] - radius, 0), min(cell_index[0] + radius + 1, height)):
+		for w in range(max(cell_index[1] - radius, 0), min(cell_index[1] + radius + 1, width)):
+			if h == cell_index[0] and w == cell_index[1]:
+				continue
+			values.append(cells[h][w])
+			positions.append(get_cell_position(h, w))
+	return [values, positions]
 
 func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 	var cell_index = get_cell_index(position)

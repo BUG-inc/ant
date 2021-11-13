@@ -1,14 +1,12 @@
 extends Node2D
+class_name AntMaster
 
 var _fat_npc_ant = load("res://entities/fat_npc_ant.tscn")
 var _npc_ant = load("res://entities/npc_ant.tscn")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 func spawn_npc_ant(position: Vector2):
 	var new_ant = _fat_npc_ant.instance()
+	new_ant.set_pheromones_map($PheromoneMap) 
 	new_ant.position = position
 	new_ant.add_to_group("ants")
 	# TODO set pheromones map
