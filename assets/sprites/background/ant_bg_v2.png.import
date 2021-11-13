@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dirt_bg_1.png-ac4f162b2b9654881eca209282cf169d.stex"
+path="res://.import/ant_bg_v2.png-79b2e594ed4550da53ea1b860f35e5ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background/dirt_bg_1.png"
-dest_files=[ "res://.import/dirt_bg_1.png-ac4f162b2b9654881eca209282cf169d.stex" ]
+source_file="res://assets/sprites/background/ant_bg_v2.png"
+dest_files=[ "res://.import/ant_bg_v2.png-79b2e594ed4550da53ea1b860f35e5ab.stex" ]
 
 [params]
 

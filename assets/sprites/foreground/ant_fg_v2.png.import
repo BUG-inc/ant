@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dirt_bg_1.png-ac4f162b2b9654881eca209282cf169d.stex"
+path="res://.import/ant_fg_v2.png-0a2bf22ffd5b97cb9b7c018cf4687dd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background/dirt_bg_1.png"
-dest_files=[ "res://.import/dirt_bg_1.png-ac4f162b2b9654881eca209282cf169d.stex" ]
+source_file="res://assets/sprites/foreground/ant_fg_v2.png"
+dest_files=[ "res://.import/ant_fg_v2.png-0a2bf22ffd5b97cb9b7c018cf4687dd8.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
