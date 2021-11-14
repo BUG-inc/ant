@@ -10,6 +10,10 @@ func _ready():
 func set_control(val: bool):
 	_is_control = val
 	$Camera2D.current = true
+	# if !val:
+	# 	$player_hud.hide()
+	# else:
+	# 	$player_hud.show()
 
 
 func _physics_process(_delta: float) -> void:

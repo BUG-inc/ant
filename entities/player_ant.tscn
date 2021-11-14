@@ -17,3 +17,5 @@ current = true
 zoom = Vector2( 0.15, 0.15 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+
+[editable path="base_ant"]

@@ -8,7 +8,7 @@
 
 [node name="base_ant" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-speed = 75
+enable_debug_drawing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

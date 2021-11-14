@@ -1,0 +1,38 @@
+[gd_scene format=2]
+
+[node name="player_hud" type="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -30.5
+margin_top = -12.0
+margin_right = 30.5
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="GridContainer"]
+margin_right = 28.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer"]
+margin_left = 32.0
+margin_right = 60.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
