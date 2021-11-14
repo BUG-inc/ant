@@ -1,19 +1,16 @@
 extends Node2D
 
 class_name PheromoneMap
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 export var width = 100
 export var height = 100
 export var cell_height = 10
 export var cell_width = 10
 export var PHEROMONE_INCREMENT = 0.1
 export var debug_mode = false
+export var pheromone_cleaning_radius = 2  # radius for cleaning pheromones in a grid (e.g.: if 2, cleans in a 2x2 square)
 # each cell stores pheromones
 var cells = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	# initialize cells
 	for _h in range(height):
@@ -59,7 +56,15 @@ func get_pheromone_levels(position: Vector2, radius: int) -> Array:
 func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
-		cells[cell_index[0]][cell_index[1]] += increment
+		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 0.5)
+
+
+func remove_pheromone(position: Vector2):
+	var cell_index = get_cell_index(position)
+	if cell_index != null:
+		for i in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
+			for j in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
+				cells[cell_index[0] + i][cell_index[1] + j] = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -73,7 +78,7 @@ func _process(_delta):
 
 func _draw():
 	var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
-	var color = Color(0, 0, 0, 1.0)
+	var color = Color(0, 0, 0.2, 1.0)
 	for h in range(height):
 		for w in range(width):
 			cell_rect.position.x = w * cell_width

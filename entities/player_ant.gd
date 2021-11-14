@@ -2,6 +2,7 @@ extends "res://entities/base_ant.gd"
 
 var _is_control = true
 var _is_laying = true
+var _is_removing = false
 
 
 func _ready():
@@ -10,10 +11,10 @@ func _ready():
 func set_control(val: bool):
 	_is_control = val
 	$Camera2D.current = true
-	# if !val:
-	# 	$player_hud.hide()
-	# else:
-	# 	$player_hud.show()
+	if !val:
+		$player_hud/GridContainer.hide()
+	else:
+		$player_hud/GridContainer.show()
 
 
 func _physics_process(_delta: float) -> void:
@@ -31,8 +32,25 @@ func _handle_pheromone():
 	if pheromone_map == null:
 		return
 
-	if _is_laying and Input.is_action_pressed("pheromone_action_key"):
-		pheromone_map.add_pheromone(global_position)
+	if Input.is_action_just_pressed("pheromone_toggle_key"):
+		_toggle_pheromone_mode()
+
+	if Input.is_action_pressed("pheromone_action_key"):
+		if _is_laying:
+			pheromone_map.add_pheromone(global_position)
+		elif _is_removing:
+			pheromone_map.remove_pheromone(global_position)
+
+
+func _toggle_pheromone_mode():
+	var temp = _is_laying
+	_is_laying = _is_removing
+	_is_removing = temp
+	if _is_laying:
+		$player_hud/GridContainer/pheromone_val.text = "Laying"
+	else:
+		$player_hud/GridContainer/pheromone_val.text = "Removing"
+
 
 		
 func _handle_movement():

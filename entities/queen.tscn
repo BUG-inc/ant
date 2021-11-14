@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/sprites/characters/queen_antcut.png" type="Texture" id=1]
 [ext_resource path="res://entities/queen.gd" type="Script" id=2]
@@ -56,6 +56,9 @@ animations = [ {
 radius = 7.74117
 height = 21.6276
 
+[sub_resource type="CircleShape2D" id=13]
+radius = 21.0
+
 [node name="Queen" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 3
@@ -64,10 +67,18 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "feasting"
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.42007, 4.65538 )
 rotation = 1.5708
 shape = SubResource( 3 )
+
+[node name="delivery_area" type="Area2D" parent="." groups=["queen"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="delivery_area"]
+position = Vector2( 3, 5 )
+shape = SubResource( 13 )

@@ -5,6 +5,7 @@ var _dir = Vector2()
 var velocity = Vector2()
 var pheromone_map: PheromoneMap = null
 var queen : Queen = null
+onready var active_anim = $Default
 
 func set_pheromones_map(map: PheromoneMap):
 	pheromone_map = map
@@ -17,17 +18,17 @@ func _process(_delta: float) -> void:
 
 func _update_animation(dir: Vector2) -> void:
 	if dir.x > 0:
-		$AnimatedSprite.flip_h = false
+		active_anim.flip_h = false
 
 	if dir.x < 0:
-		$AnimatedSprite.flip_h = true
+		active_anim.flip_h = true
 
 	if !is_equal_approx(velocity.length(), 0):
 		rotation = atan2(velocity.y, velocity.x) + PI/2
 	
 	if is_equal_approx(velocity.length(), 0):
-		$AnimatedSprite.animation = "idle"
+		active_anim.animation = "idle"
 	else:
-		$AnimatedSprite.animation = "walking"
+		active_anim.animation = "walking"
 
-	$AnimatedSprite.playing = true
+	active_anim.playing = true

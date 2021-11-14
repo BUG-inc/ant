@@ -1578,4 +1578,6 @@ position = Vector2( 22, 468 )
 [node name="coins" parent="Items" instance=ExtResource( 1 )]
 position = Vector2( 431, 336 )
 
+[connection signal="resource_update" from="AntMaster/Queen" to="." method="_on_Queen_resource_update"]
+
 [editable path="Level"]

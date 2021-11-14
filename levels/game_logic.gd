@@ -44,3 +44,7 @@ func _management_loop(_delta):
 	if Input.is_action_just_pressed("kill"):
 		$AntMaster.killall()
 		$Level.position = Vector2()
+
+
+func _on_Queen_resource_update(type: String, number: int):
+	$HUD/ResourceNo.text = str(number)
