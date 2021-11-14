@@ -4,11 +4,8 @@ extends "res://entities/base_ant.gd"
 export (float) var change_dir_interval = 1.0 setget change_dir
 var _gen = RandomNumberGenerator.new()
 var _time_since_change := 0.0
-var pheromone_map: PheromoneMap = null
 export (int) var pheromone_range = 2
 
-func set_pheromones_map(map: PheromoneMap):
-	pheromone_map = map
 
 func _ready():
 	_dir = _change_dir()
