@@ -1,8 +1,8 @@
 extends Node2D
 class_name AntMaster
 
-var _fat_npc_ant = load("res://entities/fat_npc_ant.tscn")
-var _npc_ant = load("res://entities/npc_ant.tscn")
+var _fat_npc_ant = preload("res://entities/fat_npc_ant.tscn")
+var _npc_ant = preload("res://entities/npc_ant.tscn")
 
 func spawn_npc_ant(position: Vector2):
 	var new_ant = _fat_npc_ant.instance()
@@ -19,9 +19,6 @@ func killall():
 		ant.queue_free()
 
 	$PheromoneMap.reset_cells()
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 func _can_play_sound() -> bool:
 	var ants = get_tree().get_nodes_in_group("ants")
@@ -29,7 +26,3 @@ func _can_play_sound() -> bool:
 		if ant.get_node("AudioStreamPlayer").playing:
 			return false
 	return true
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

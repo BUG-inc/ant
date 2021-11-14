@@ -1,7 +1,7 @@
 extends Node2D
 
 var _player_mode = true
-var _fat_npc_ant = load("res://entities/fat_npc_ant.tscn")
+var _fat_npc_ant = preload("res://entities/fat_npc_ant.tscn")
 
 func set_player_mode(val: bool):
 	$player/base_ant.set_control(val)
