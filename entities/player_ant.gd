@@ -11,10 +11,10 @@ func _ready():
 func set_control(val: bool):
 	_is_control = val
 	$Camera2D.current = true
-	# if !val:
-	# 	$player_hud.hide()
-	# else:
-	# 	$player_hud.show()
+	if !val:
+		$player_hud/GridContainer.hide()
+	else:
+		$player_hud/GridContainer.show()
 
 
 func _physics_process(_delta: float) -> void:
@@ -46,6 +46,11 @@ func _toggle_pheromone_mode():
 	var temp = _is_laying
 	_is_laying = _is_removing
 	_is_removing = temp
+	if _is_laying:
+		$player_hud/GridContainer/pheromone_val.text = "Laying"
+	else:
+		$player_hud/GridContainer/pheromone_val.text = "Removing"
+
 
 		
 func _handle_movement():
