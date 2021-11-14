@@ -1,5 +1,7 @@
 extends Node2D
 
+var _pheromone = preload("res://entities/pheromone.tscn")
+
 class_name PheromoneMap
 export var width = 100
 export var height = 100
@@ -11,6 +13,7 @@ export var pheromone_cleaning_radius = 2  # radius for cleaning pheromones in a 
 # each cell stores pheromones
 var cells = []
 var nonzero_cells = []
+var pheromones = {}
 
 func _ready():
 	# initialize cells
@@ -58,16 +61,28 @@ func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
 		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 0.5)
-		nonzero_cells.append(cell_index)
-		update()
+		if not pheromones.has(cell_index):
+			var new_particles = _pheromone.instance()
+			new_particles.position = position
+			pheromones[cell_index] = new_particles
+			add_child(new_particles)
+		#update()
 
 func remove_pheromone(position: Vector2):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
 		for i in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
 			for j in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
-				cells[cell_index[0] + i][cell_index[1] + j] = 0
-		update()
+				var y_index: int = cell_index[0] + i
+				var x_index: int = cell_index[1] + j 
+				cells[y_index][x_index] = 0.0
+				if pheromones.has([y_index, x_index]):
+					print("Removing particle")
+					pheromones[[y_index, x_index]].get_node("Particles2D").set_one_shot(true)
+					pheromones[[y_index, x_index]].get_node("Particles2D").set_emitting(false)
+					pheromones[[y_index, x_index]].queue_free()
+					pheromones.erase([y_index, x_index])
+		#update()
 
 func _process(_delta):
 	if debug_mode && Input.is_action_pressed("add_pheromone"):
@@ -75,14 +90,15 @@ func _process(_delta):
 
 
 func _draw():
-	var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
-	var color = Color(0, 0, 0.2, 0.5)
-	for index in nonzero_cells:
-		color.r = cells[index[0]][index[1]]
-		color.a = cells[index[0]][index[1]]
-		cell_rect.position.x = index[1] * cell_width
-		cell_rect.position.y = index[0] * cell_height
-		draw_rect(cell_rect, color)
+	pass
+	#var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
+	#var color = Color(0, 0, 0.2, 0.5)
+	#for index in nonzero_cells:
+	#	color.r = cells[index[0]][index[1]]
+	#	color.a = cells[index[0]][index[1]]
+	#	cell_rect.position.x = index[1] * cell_width
+	#	cell_rect.position.y = index[0] * cell_height
+	#	draw_rect(cell_rect, color)
 
 
 func reset_cells():

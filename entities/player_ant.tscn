@@ -27,7 +27,7 @@ frame = 1
 frame = 1
 
 [node name="Enemy" parent="base_ant" index="5"]
-frame = 1
+frame = 0
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
