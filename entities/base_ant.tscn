@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/sprites/characters/fatant.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/characters/fatant_animated.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/characters/hat1fatant_animated.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/characters/backpackfatant_animated.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=19]
 radius = 13.0978
@@ -42,6 +44,72 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=25]
 radius = 8.0
 
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 37 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "walking",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 36 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "walking",
+"speed": 10.0
+} ]
+
 [node name="base_ant" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.4 )
 collision_mask = 2
@@ -50,7 +118,7 @@ collision_mask = 2
 rotation = 1.57254
 shape = SubResource( 19 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Default" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 18 )
 animation = "walking"
@@ -60,4 +128,20 @@ playing = true
 [node name="interaction_field" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_field"]
+visible = false
 shape = SubResource( 25 )
+
+[node name="Miner" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 30 )
+animation = "walking"
+frame = 1
+playing = true
+
+[node name="Backpacker" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 35 )
+animation = "idle"
+playing = true
