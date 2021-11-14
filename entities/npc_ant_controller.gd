@@ -3,15 +3,17 @@ extends "res://entities/base_ant.gd"
 
 export (float) var change_dir_interval = 1.0
 export (float) var backpacker_change_dir_interval = 0.1
+export (int) var pheromone_range = 2
+export (float) var pheromone_cone_size = 180.0 / 180.0 * PI  # total angle of the cone in radians
+export (float) var direction_change_limit = 45.0 / 180.0 * PI
+export (bool) var enable_debug_drawing = false
+
 var _change_dir_interval: float = change_dir_interval
 var _gen = RandomNumberGenerator.new()
 var _time_since_change := 0.0
-export (int) var pheromone_range = 2
-export (float) var pheromone_cone_size = 180.0 / 180.0 * PI  # total angle of the cone in radians
-var sensed_pheromones: Array = []
+var _sensed_pheromones: Array = []
 var _resource_load: Dictionary = {'type': null, 'number': 0}
-export (bool) var enable_debug_drawing = false
-
+var _limit_direction_flip: bool = false
 
 func _ready():
 	_dir = _change_dir()
@@ -24,8 +26,12 @@ func _physics_process(delta: float) -> void:
 
 	if _time_since_change > _change_dir_interval:
 		_time_since_change = 0.0
-		_dir = _change_dir()
-
+		var new_dir: Vector2 = _change_dir()
+		if _limit_direction_flip:
+			var angle: float = _dir.angle_to(new_dir)
+			_dir = _dir.rotated(max(min(angle, direction_change_limit), -direction_change_limit / 2.0))
+		else:
+			_dir = new_dir
 	velocity = move_and_slide(speed * _dir)
 	if enable_debug_drawing:
 		update()
@@ -65,7 +71,7 @@ func _sample_random_dir() -> Vector2:
 func _change_dir() -> Vector2:
 	_gen.randomize()
 	if pheromone_map != null:
-		sensed_pheromones = []
+		_sensed_pheromones = []
 		var pheromones = pheromone_map.get_pheromone_levels(global_position, pheromone_range)
 		match pheromones:
 			[]:
@@ -78,7 +84,7 @@ func _change_dir() -> Vector2:
 					var dir : Vector2 = (positions[i] - global_position).normalized()
 					var angle: float = abs(_dir.angle_to(dir))
 					if angle <= pheromone_cone_size / 2.0:
-						sensed_pheromones.append(positions[i])
+						_sensed_pheromones.append(positions[i])
 						dirs.append(dir)
 						in_cone_values.append(values[i])
 				# in case we don't have any values in cone, sample a random direction
@@ -89,7 +95,7 @@ func _change_dir() -> Vector2:
 
 func _draw():
 	if enable_debug_drawing:
-		for point in sensed_pheromones:
+		for point in _sensed_pheromones:
 			draw_circle(to_local(point), 2.1, Color(0,1,0,1))
 
 func _on_interaction_field_area_entered(area):
@@ -100,6 +106,7 @@ func _on_interaction_field_area_entered(area):
 			change_animation_style("Backpacker")
 			set_change_dir_interval(backpacker_change_dir_interval)
 			_dir = -_dir
+			_limit_direction_flip = true
 	elif area.is_in_group("queen"):
 		if _resource_load['number'] > 0:
 			if queen != null:
@@ -109,3 +116,4 @@ func _on_interaction_field_area_entered(area):
 				change_animation_style("Default")
 				set_change_dir_interval(change_dir_interval)
 				_dir = -_dir
+				_limit_direction_flip = false
