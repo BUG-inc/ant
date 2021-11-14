@@ -48,3 +48,7 @@ func _management_loop(_delta):
 
 func _on_Queen_resource_update(type: String, number: int):
 	$HUD/ResourceNo.text = str(number)
+
+
+func _on_player_dig_hole(position):
+	$Level/Foreground.damage_cell(position)

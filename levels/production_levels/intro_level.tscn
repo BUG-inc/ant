@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=124 format=2]
 
 [ext_resource path="res://entities/coins.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/camera.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/sprites/background/dirt_bg_1.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/background/ant_backgroun_tilemap.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/background/ant_bg_v2.png" type="Texture" id=12]
+[ext_resource path="res://levels/level_layouts/level_interface.gd" type="Script" id=13]
 
 [sub_resource type="TileSet" id=175]
 resource_local_to_scene = true
@@ -1554,6 +1555,7 @@ resource_local_to_scene = true
 script = ExtResource( 8 )
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 13 )
 
 [node name="Background" parent="Level" index="0"]
 tile_set = SubResource( 175 )
@@ -1578,6 +1580,7 @@ position = Vector2( 22, 468 )
 [node name="coins" parent="Items" instance=ExtResource( 1 )]
 position = Vector2( 431, 336 )
 
+[connection signal="dig_hole" from="AntMaster/player" to="Level" method="_on_player_dig_hole"]
 [connection signal="resource_update" from="AntMaster/Queen" to="." method="_on_Queen_resource_update"]
 
 [editable path="Level"]

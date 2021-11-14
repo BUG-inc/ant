@@ -12,13 +12,15 @@ script = ExtResource( 3 )
 collision_mask = 0
 script = ExtResource( 2 )
 speed = 75
+tool_point = Vector2( 0, -25 )
 
 [node name="Default" parent="base_ant" index="1"]
 visible = false
-frame = 2
+frame = 3
 
 [node name="Miner" parent="base_ant" index="3"]
 visible = true
+frame = 3
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
@@ -28,5 +30,7 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
 [node name="player_hud" parent="base_ant" instance=ExtResource( 4 )]
+
+[connection signal="dig_hole_signal" from="base_ant" to="." method="_on_base_ant_dig_hole_signal"]
 
 [editable path="base_ant"]
