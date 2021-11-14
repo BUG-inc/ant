@@ -16,6 +16,7 @@ func set_player_mode(val: bool):
 func _ready():
 	set_player_mode(true)
 
+
 func _process(delta):
 	if _player && Input.is_action_just_pressed("camera_swap"):
 		set_player_mode(!_player_mode)

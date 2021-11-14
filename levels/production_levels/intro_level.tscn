@@ -1572,6 +1572,7 @@ position = Vector2( 24.7476, 513.837 )
 position = Vector2( 22, 468 )
 
 [node name="camera" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 0.720927, 1 )
 
 [node name="Items" type="Node2D" parent="."]
 

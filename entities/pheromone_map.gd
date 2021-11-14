@@ -10,6 +10,7 @@ export var debug_mode = false
 export var pheromone_cleaning_radius = 2  # radius for cleaning pheromones in a grid (e.g.: if 2, cleans in a 2x2 square)
 # each cell stores pheromones
 var cells = []
+var nonzero_cells = []
 
 func _ready():
 	# initialize cells
@@ -57,7 +58,8 @@ func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
 		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 0.5)
-
+		nonzero_cells.append(cell_index)
+		update()
 
 func remove_pheromone(position: Vector2):
 	var cell_index = get_cell_index(position)
@@ -65,30 +67,26 @@ func remove_pheromone(position: Vector2):
 		for i in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
 			for j in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
 				cells[cell_index[0] + i][cell_index[1] + j] = 0
+	update()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if debug_mode && Input.is_action_pressed("add_pheromone"):
-		var cell_index = get_cell_index(get_local_mouse_position(), true)
-		if cell_index == null:
-			return
-		cells[cell_index[0]][cell_index[1]] += PHEROMONE_INCREMENT
-	update()
+		add_pheromone(get_global_mouse_position())
 
 
 func _draw():
 	var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
 	var color = Color(0, 0, 0.2, 1.0)
-	for h in range(height):
-		for w in range(width):
-			cell_rect.position.x = w * cell_width
-			cell_rect.position.y = h * cell_height
-			color.r = cells[h][w]
-			color.a = cells[h][w]
-			draw_rect(cell_rect, color)
+	for index in nonzero_cells:
+		color.r = cells[index[0]][index[1]]
+		color.a = cells[index[0]][index[1]]
+		cell_rect.position.x = index[1] * cell_width
+		cell_rect.position.y = index[0] * cell_height
+		draw_rect(cell_rect, color)
 
 
 func reset_cells():
+	nonzero_cells = []
 	for h in range(height):
 		for w in range(width):
 			cells[h][w] = 0.0
