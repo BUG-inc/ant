@@ -7,6 +7,7 @@ var _is_removing = false
 
 func _ready():
 	print("player ant ready")
+	active_anim = $Miner
 
 func set_control(val: bool):
 	_is_control = val
