@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://entities/player_ant.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level_layouts/level1.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/sprites/background/ant_backgroun_tilemap.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/background/dirt_bg_1.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/background/ant_bg_v2.png" type="Texture" id=7]
+[ext_resource path="res://entities/camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://levels/game_logic.gd" type="Script" id=9]
 
 [sub_resource type="TileSet" id=175]
 resource_local_to_scene = true
@@ -1546,23 +1548,22 @@ resource_local_to_scene = true
 28/z_index = 0
 
 [node name="player_test_level" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="ant_test_level" parent="." instance=ExtResource( 2 )]
 
-[node name="camera" parent="ant_test_level/camera_position" index="0"]
-current = false
-
-[node name="Background" parent="ant_test_level" index="1"]
+[node name="Background" parent="ant_test_level" index="0"]
 tile_set = SubResource( 175 )
 
-[node name="Foreground" parent="ant_test_level" index="2"]
+[node name="Foreground" parent="ant_test_level" index="1"]
 tile_set = SubResource( 176 )
 
 [node name="AntMaster" parent="." instance=ExtResource( 3 )]
 
-[node name="Player" parent="AntMaster" instance=ExtResource( 1 )]
+[node name="player" parent="AntMaster" instance=ExtResource( 1 )]
 position = Vector2( 50.6394, 508.658 )
 
+[node name="camera" parent="." instance=ExtResource( 8 )]
+
 [editable path="ant_test_level"]
-[editable path="ant_test_level/AntMaster"]
 [editable path="AntMaster"]

@@ -1,21 +1,24 @@
 extends Node2D
 
-var _player_mode = true
+export var _player_mode = true
 var _fat_npc_ant = preload("res://entities/fat_npc_ant.tscn")
 onready var _player = $AntMaster/player
+onready var _camera = $camera
 
 
 func set_player_mode(val: bool):
-	_player.get_node("base_ant").set_control(val)
-	$Level.use_level_camera(!val, _player.position + _player.get_node("base_ant").position)
-	_player_mode = val
+	if _player:
+		_player.get_node("base_ant").set_control(val)
+		_player_mode = val
+		if _camera:
+			_camera.set_active(!val, _player.position + _player.get_node("base_ant").position)
 
 
 func _ready():
 	set_player_mode(true)
 
 func _process(delta):
-	if Input.is_action_just_pressed("camera_swap"):
+	if _player && Input.is_action_just_pressed("camera_swap"):
 		set_player_mode(!_player_mode)
 
 	if !_player_mode:
@@ -28,9 +31,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _management_gui():
-	var ants = get_tree().get_nodes_in_group("ants")
-	var num_ants = len(ants)
-	$HUD/AntNo.text = str(num_ants)
+	if $HUD:
+		var ants = get_tree().get_nodes_in_group("ants")
+		var num_ants = len(ants)
+		$HUD/AntNo.text = str(num_ants)
 
 
 func _management_loop(_delta):

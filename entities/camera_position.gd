@@ -7,8 +7,10 @@ export var max_x = 100000
 export var max_y = 100000
 var _is_active = true
 
-func set_active(val: bool):
+func set_active(val: bool, pos: Vector2):
+	$Camera2D.current = val
 	_is_active = val
+	position = pos
 
 func _physics_process(delta: float) -> void:
 	if _is_active:
