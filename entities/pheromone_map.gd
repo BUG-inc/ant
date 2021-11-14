@@ -9,6 +9,7 @@ export var height = 100
 export var cell_height = 10
 export var cell_width = 10
 export var PHEROMONE_INCREMENT = 0.1
+export var debug_mode = false
 # each cell stores pheromones
 var cells = []
 
@@ -62,12 +63,12 @@ func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_pressed("add_pheromone"):
+	if debug_mode && Input.is_action_pressed("add_pheromone"):
 		var cell_index = get_cell_index(get_local_mouse_position(), true)
 		if cell_index == null:
 			return
 		cells[cell_index[0]][cell_index[1]] += PHEROMONE_INCREMENT
-		update()
+	update()
 
 
 func _draw():
@@ -83,6 +84,6 @@ func _draw():
 
 
 func reset_cells():
-	for row in cells:
-		for cell in row:
-			cell = 0.0
+	for h in range(height):
+		for w in range(width):
+			cells[h][w] = 0.0
