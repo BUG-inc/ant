@@ -156,7 +156,6 @@ shape = SubResource( 19 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 18 )
 animation = "walking"
-frame = 1
 playing = true
 
 [node name="interaction_field" type="Area2D" parent="." groups=["npc_ants"]]
@@ -171,19 +170,20 @@ visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 30 )
 animation = "walking"
-frame = 1
 playing = true
 
 [node name="Backpacker" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 35 )
-animation = "idle"
+animation = "walking"
+frame = 3
 playing = true
 
 [node name="Enemy" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 42 )
-animation = "idle"
+animation = "walking"
+frame = 3
 playing = true

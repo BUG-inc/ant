@@ -27,7 +27,7 @@ margin_top = 140.0
 margin_right = 1023.0
 margin_bottom = 191.0
 custom_fonts/font = ExtResource( 1 )
-text = "The colony management simulator"
+text = "The colony must grow!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

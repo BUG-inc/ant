@@ -1578,8 +1578,23 @@ scale = Vector2( 0.720927, 1 )
 
 [node name="Items" type="Node2D" parent="."]
 
+[node name="coins2" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 436.313, 280.292 )
+
 [node name="coins" parent="Items" instance=ExtResource( 1 )]
-position = Vector2( 431, 336 )
+position = Vector2( 485.745, 251.051 )
+
+[node name="coins3" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 479.731, 299.17 )
+
+[node name="coins4" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 201.288, 251.976 )
+
+[node name="coins5" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 147.487, 289.731 )
+
+[node name="coins6" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 417.435, 487.001 )
 
 [connection signal="dig_hole" from="AntMaster/player" to="Level" method="_on_player_dig_hole"]
 [connection signal="resource_update" from="AntMaster/Queen" to="." method="_on_Queen_resource_update"]
