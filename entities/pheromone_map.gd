@@ -76,7 +76,7 @@ func _process(_delta):
 
 func _draw():
 	var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
-	var color = Color(0, 0, 0.2, 1.0)
+	var color = Color(0, 0, 0.2, 0.5)
 	for index in nonzero_cells:
 		color.r = cells[index[0]][index[1]]
 		color.a = cells[index[0]][index[1]]

@@ -6,6 +6,7 @@
 [ext_resource path="res://overlays/player_hud.tscn" type="PackedScene" id=4]
 
 [node name="player" type="Node2D"]
+z_index = 10
 script = ExtResource( 3 )
 
 [node name="base_ant" parent="." instance=ExtResource( 1 )]
@@ -16,11 +17,17 @@ tool_point = Vector2( 0, -25 )
 
 [node name="Default" parent="base_ant" index="1"]
 visible = false
-frame = 3
+frame = 1
 
 [node name="Miner" parent="base_ant" index="3"]
 visible = true
-frame = 3
+frame = 1
+
+[node name="Backpacker" parent="base_ant" index="4"]
+frame = 1
+
+[node name="Enemy" parent="base_ant" index="5"]
+frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
