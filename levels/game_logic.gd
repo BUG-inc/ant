@@ -1,7 +1,6 @@
 extends Node2D
 
 export var _player_mode = true
-var _fat_npc_ant = preload("res://entities/fat_npc_ant.tscn")
 onready var _player = $AntMaster/player
 onready var _camera = $camera
 

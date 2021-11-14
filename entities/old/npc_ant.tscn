@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/npc_ant_controller.gd" type="Script" id=1]
+[ext_resource path="res://entities/old/base_ant.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="base_ant" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+enable_debug_drawing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
