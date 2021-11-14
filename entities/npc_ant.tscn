@@ -13,11 +13,14 @@ collision_layer = 2
 script = ExtResource( 4 )
 speed = 40
 
-[node name="AnimatedSprite" parent="base_ant" index="1"]
+[node name="Default" parent="base_ant" index="1"]
 frame = 3
 
 [node name="interaction_field" parent="base_ant" index="2"]
 collision_layer = 0
+
+[node name="Miner" parent="base_ant" index="3"]
+frame = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

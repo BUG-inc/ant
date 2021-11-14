@@ -95,6 +95,7 @@ func _on_interaction_field_area_entered(area):
 		if _resource_load['number'] == 0:
 			_resource_load['number'] = 1
 			_resource_load['type'] = area.get_meta('resource_type')		# switch between resource type
+			change_animation_style("Backpacker")
 			print("Updated resource type " + str(_resource_load))
 	elif area.is_in_group("queen"):
 		if _resource_load['number'] > 0:
@@ -102,3 +103,4 @@ func _on_interaction_field_area_entered(area):
 				queen.deliver_resource(_resource_load["type"], _resource_load["number"])
 				_resource_load["type"] = ""
 				_resource_load["number"] = 0
+				change_animation_style("Default")

@@ -13,6 +13,16 @@ func set_pheromones_map(map: PheromoneMap):
 func set_queen(in_queen: Queen):
 	queen = in_queen
 
+func change_animation_style(type: String):
+	active_anim.hide()
+	active_anim.playing = false
+	active_anim = get_node_or_null(type)
+	if active_anim == null:
+		active_anim = $Default
+		print("WARNING: Attempted to set invalid animation style " + type)
+	active_anim.playing = true
+	active_anim.show()
+
 func _process(_delta: float) -> void:
 	_update_animation(_dir)
 
