@@ -83,6 +83,8 @@ func _draw():
 
 
 func reset_cells():
-	for row in cells:
-		for cell in row:
-			cell = 0.0
+	for h in range(height):
+		for w in range(width):
+			cells[h][w] = 0.0
+
+	update()
