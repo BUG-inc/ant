@@ -1,7 +1,9 @@
 extends "res://entities/base_ant.gd"
 
 
-export (float) var change_dir_interval = 1.0 setget change_dir
+export (float) var change_dir_interval = 1.0
+export (float) var backpacker_change_dir_interval = 0.1
+var _change_dir_interval: float = change_dir_interval
 var _gen = RandomNumberGenerator.new()
 var _time_since_change := 0.0
 export (int) var pheromone_range = 2
@@ -13,14 +15,14 @@ export (bool) var enable_debug_drawing = false
 
 func _ready():
 	_dir = _change_dir()
-
-func change_dir(val: float):
-	change_dir_interval = val
+	
+func set_change_dir_interval(val: float):
+	_change_dir_interval = val
 	
 func _physics_process(delta: float) -> void:
 	_time_since_change += delta
 
-	if _time_since_change > change_dir_interval:
+	if _time_since_change > _change_dir_interval:
 		_time_since_change = 0.0
 		_dir = _change_dir()
 
@@ -96,7 +98,8 @@ func _on_interaction_field_area_entered(area):
 			_resource_load['number'] = 1
 			_resource_load['type'] = area.get_meta('resource_type')		# switch between resource type
 			change_animation_style("Backpacker")
-			print("Updated resource type " + str(_resource_load))
+			set_change_dir_interval(backpacker_change_dir_interval)
+			_dir = -_dir
 	elif area.is_in_group("queen"):
 		if _resource_load['number'] > 0:
 			if queen != null:
@@ -104,3 +107,5 @@ func _on_interaction_field_area_entered(area):
 				_resource_load["type"] = ""
 				_resource_load["number"] = 0
 				change_animation_style("Default")
+				set_change_dir_interval(change_dir_interval)
+				_dir = -_dir
