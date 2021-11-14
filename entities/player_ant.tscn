@@ -13,10 +13,12 @@ script = ExtResource( 2 )
 speed = 75
 
 [node name="Default" parent="base_ant" index="1"]
-frame = 2
+visible = false
+frame = 3
 
 [node name="Miner" parent="base_ant" index="3"]
-frame = 1
+visible = true
+frame = 2
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
