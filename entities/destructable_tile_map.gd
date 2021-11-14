@@ -16,6 +16,7 @@ func dig_hole(position: Vector2):
 		return
 	set_cell(cell.x, cell.y, INVALID_CELL)
 	update_dirty_quadrants()
+	update_bitmask_area(cell)
 	# get the health value of the cell
 	pass
 
