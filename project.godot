@@ -119,7 +119,6 @@ pheromone_toggle_key={
 2d_physics/layer_1="player"
 2d_physics/layer_2="npc"
 2d_physics/layer_3="foreground"
-2d_physics/layer_4="resources"
 
 [physics]
 
