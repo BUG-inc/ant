@@ -2,10 +2,12 @@ extends Node2D
 
 var _player_mode = true
 var _fat_npc_ant = preload("res://entities/fat_npc_ant.tscn")
+onready var _player = $AntMaster/player
+
 
 func set_player_mode(val: bool):
-	$player/base_ant.set_control(val)
-	$Level.use_level_camera(!val, $player.position + $player/base_ant.position)
+	_player.get_node("base_ant").set_control(val)
+	$Level.use_level_camera(!val, _player.position + _player.get_node("base_ant").position)
 	_player_mode = val
 
 
@@ -34,8 +36,8 @@ func _management_gui():
 func _management_loop(_delta):
 	if Input.is_action_pressed("spawn"):
 		var pos = get_local_mouse_position()
-		$Level/AntMaster.spawn_npc_ant(pos)
+		$AntMaster.spawn_npc_ant(pos)
 
 	if Input.is_action_just_pressed("kill"):
-		$Level/AntMaster.killall()
+		$AntMaster.killall()
 		$Level.position = Vector2()

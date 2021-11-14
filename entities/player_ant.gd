@@ -28,7 +28,6 @@ func _handle_pheromone():
 		return
 
 	if _is_laying and Input.is_action_pressed("pheromone_action_key"):
-		print("adding pheromone")
 		pheromone_map.add_pheromone(global_position)
 
 		

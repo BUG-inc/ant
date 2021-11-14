@@ -8,11 +8,8 @@ var _npc_ant = preload("res://entities/npc_ant.tscn")
 func _ready():
 	yield(get_tree().root, "ready")
 	for n in get_children():
-		print(n.name)
-		if n.name == "Player":
+		if n.has_method("set_pheromones_map"):
 			n.set_pheromones_map($PheromoneMap)
-
-	print("Ant master ready")
 
 func spawn_npc_ant(position: Vector2):
 	var new_ant = _fat_npc_ant.instance()
