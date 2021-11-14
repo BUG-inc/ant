@@ -6,7 +6,6 @@ var _npc_ant = preload("res://entities/npc_ant.tscn")
 
 
 func _ready():
-	yield(get_tree().root, "ready")
 	for n in get_children():
 		if n.has_method("set_pheromones_map"):
 			n.set_pheromones_map($PheromoneMap)

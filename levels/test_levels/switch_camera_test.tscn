@@ -16,7 +16,12 @@ script = ExtResource( 1 )
 
 [node name="AntMaster" parent="." instance=ExtResource( 5 )]
 
+[node name="PheromoneMap" parent="AntMaster" index="0"]
+debug_mode = true
+
 [node name="player" parent="AntMaster" instance=ExtResource( 2 )]
 position = Vector2( 43.654, 539.885 )
 
 [node name="camera" parent="." instance=ExtResource( 6 )]
+
+[editable path="AntMaster"]
