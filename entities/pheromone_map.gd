@@ -67,7 +67,7 @@ func remove_pheromone(position: Vector2):
 		for i in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
 			for j in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
 				cells[cell_index[0] + i][cell_index[1] + j] = 0
-	update()
+		update()
 
 func _process(_delta):
 	if debug_mode && Input.is_action_pressed("add_pheromone"):

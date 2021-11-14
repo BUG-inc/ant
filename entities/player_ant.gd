@@ -1,5 +1,8 @@
 extends "res://entities/base_ant.gd"
 
+export (Vector2) var tool_point = Vector2(40.0, 0.0)
+signal dig_hole_signal(position)
+
 var _is_control = true
 var _is_laying = true
 var _is_removing = false
@@ -22,6 +25,7 @@ func _physics_process(_delta: float) -> void:
 	if _is_control:
 		_handle_movement()
 		_handle_pheromone()
+		_handle_terrain_destruction()
 
 
 func _handle_pheromone():
@@ -42,6 +46,10 @@ func _handle_pheromone():
 		elif _is_removing:
 			pheromone_map.remove_pheromone(global_position)
 
+func _handle_terrain_destruction():
+	if Input.is_action_just_pressed("dig_hole"):
+		emit_signal("dig_hole_signal", to_global(tool_point))
+		print(get_global_mouse_position())
 
 func _toggle_pheromone_mode():
 	var temp = _is_laying

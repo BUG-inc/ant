@@ -42,6 +42,10 @@ position = Vector2( 1377.02, 999.397 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant/base_ant" index="5"]
 visible = true
@@ -51,6 +55,10 @@ position = Vector2( 1399.89, 985.882 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant2/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant2/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant2/base_ant" index="5"]
 visible = true
@@ -60,10 +68,6 @@ position = Vector2( 1345.18, 989.658 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant3/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant3/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant3/base_ant" index="5"]
 visible = true
@@ -86,10 +90,6 @@ position = Vector2( 1321.02, 980.294 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant5/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant5/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant5/base_ant" index="5"]
 visible = true
@@ -112,10 +112,6 @@ position = Vector2( 1362.04, 1035.36 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant7/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant7/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant7/base_ant" index="5"]
 visible = true
@@ -125,10 +121,6 @@ position = Vector2( 1384.91, 1021.84 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant8/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant8/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant8/base_ant" index="5"]
 visible = true
@@ -138,6 +130,10 @@ position = Vector2( 1330.2, 1025.62 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant9/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant9/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant9/base_ant" index="5"]
 visible = true
@@ -147,10 +143,10 @@ position = Vector2( 1353.07, 1012.1 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant10/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant10/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant10/base_ant" index="5"]
 visible = true
@@ -160,6 +156,10 @@ position = Vector2( 1306.04, 1016.25 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant11/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant11/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant11/base_ant" index="5"]
 visible = true
@@ -169,10 +169,10 @@ position = Vector2( 1328.91, 1002.74 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant12/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant12/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant12/base_ant" index="5"]
 visible = true
@@ -195,6 +195,10 @@ position = Vector2( 1421.8, 1010.98 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant14/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant14/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant14/base_ant" index="5"]
 visible = true
@@ -204,10 +208,10 @@ position = Vector2( 1367.09, 1014.75 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant15/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant15/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant15/base_ant" index="5"]
 visible = true
@@ -217,10 +221,6 @@ position = Vector2( 1389.96, 1001.24 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant16/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant16/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant16/base_ant" index="5"]
 visible = true
@@ -230,10 +230,6 @@ position = Vector2( 1342.93, 1005.39 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant17/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant17/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant17/base_ant" index="5"]
 visible = true
@@ -256,10 +252,6 @@ position = Vector2( 1383.95, 1060.45 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant19/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant19/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant19/base_ant" index="5"]
 visible = true
@@ -269,10 +261,6 @@ position = Vector2( 1406.82, 1046.94 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant20/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant20/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant20/base_ant" index="5"]
 visible = true
@@ -282,6 +270,10 @@ position = Vector2( 1352.11, 1050.71 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant21/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant21/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant21/base_ant" index="5"]
 visible = true
@@ -291,10 +283,10 @@ position = Vector2( 1374.98, 1037.2 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant22/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant22/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant22/base_ant" index="5"]
 visible = true
@@ -304,6 +296,10 @@ position = Vector2( 1327.95, 1041.35 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant23/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant23/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant23/base_ant" index="5"]
 visible = true
@@ -313,10 +309,10 @@ position = Vector2( 1350.82, 1027.83 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant24/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant24/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant24/base_ant" index="5"]
 visible = true
@@ -326,10 +322,10 @@ position = Vector2( 1414.59, 986.195 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant25/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant25/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant25/base_ant" index="5"]
 visible = true
@@ -339,10 +335,10 @@ position = Vector2( 1437.47, 972.68 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant26/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant26/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant26/base_ant" index="5"]
 visible = true
@@ -365,6 +361,10 @@ position = Vector2( 1405.63, 962.941 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant28/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant28/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant28/base_ant" index="5"]
 visible = true
@@ -387,6 +387,10 @@ position = Vector2( 1381.47, 953.577 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant30/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant30/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant30/base_ant" index="5"]
 visible = true
@@ -422,10 +426,10 @@ position = Vector2( 1367.77, 1012.42 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant33/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant33/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant33/base_ant" index="5"]
 visible = true
@@ -435,10 +439,6 @@ position = Vector2( 1390.64, 998.901 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant34/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant34/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant34/base_ant" index="5"]
 visible = true
@@ -448,10 +448,10 @@ position = Vector2( 1343.61, 1003.05 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant35/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant35/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant35/base_ant" index="5"]
 visible = true
@@ -461,10 +461,6 @@ position = Vector2( 1366.48, 989.536 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant36/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant36/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant36/base_ant" index="5"]
 visible = true
@@ -474,6 +470,10 @@ position = Vector2( 1436.51, 1011.29 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant37/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant37/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant37/base_ant" index="5"]
 visible = true
@@ -483,10 +483,10 @@ position = Vector2( 1459.38, 997.777 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant38/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant38/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant38/base_ant" index="5"]
 visible = true
@@ -496,10 +496,6 @@ position = Vector2( 1404.67, 1001.55 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant39/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant39/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant39/base_ant" index="5"]
 visible = true
@@ -535,6 +531,10 @@ position = Vector2( 1403.38, 978.674 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant42/base_ant" index="1"]
 visible = false
+frame = 1
+
+[node name="Miner" parent="enemy_ants_master/npc_ant42/base_ant" index="3"]
+frame = 1
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant42/base_ant" index="5"]
 visible = true
@@ -570,10 +570,10 @@ position = Vector2( 1389.69, 1037.51 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant45/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant45/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant45/base_ant" index="5"]
 visible = true
@@ -583,10 +583,6 @@ position = Vector2( 1412.56, 1024 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant46/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant46/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant46/base_ant" index="5"]
 visible = true
@@ -596,10 +592,10 @@ position = Vector2( 1365.53, 1028.15 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant47/base_ant" index="1"]
 visible = false
-frame = 0
+frame = 2
 
 [node name="Miner" parent="enemy_ants_master/npc_ant47/base_ant" index="3"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant47/base_ant" index="5"]
 visible = true
@@ -609,10 +605,6 @@ position = Vector2( 1388.4, 1014.63 )
 
 [node name="Default" parent="enemy_ants_master/npc_ant48/base_ant" index="1"]
 visible = false
-frame = 3
-
-[node name="Miner" parent="enemy_ants_master/npc_ant48/base_ant" index="3"]
-frame = 3
 
 [node name="Enemy" parent="enemy_ants_master/npc_ant48/base_ant" index="5"]
 visible = true
