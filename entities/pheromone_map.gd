@@ -59,7 +59,13 @@ func get_pheromone_levels(position: Vector2, radius: int) -> Array:
 func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
-		cells[cell_index[0]][cell_index[1]] += increment
+		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 1)
+
+
+func remove_pheromone(position: Vector2, decrement: float = PHEROMONE_INCREMENT):
+	var cell_index = get_cell_index(position)
+	if cell_index != null:
+		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] - decrement, 0, 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
