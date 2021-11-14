@@ -56,7 +56,7 @@ func get_pheromone_levels(position: Vector2, radius: int) -> Array:
 func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
-		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 1)
+		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 0.5)
 
 
 func remove_pheromone(position: Vector2):
@@ -78,7 +78,7 @@ func _process(_delta):
 
 func _draw():
 	var cell_rect = Rect2(0.0, 0.0, cell_width, cell_height)
-	var color = Color(0, 0, 0, 1.0)
+	var color = Color(0, 0, 0.2, 1.0)
 	for h in range(height):
 		for w in range(width):
 			cell_rect.position.x = w * cell_width

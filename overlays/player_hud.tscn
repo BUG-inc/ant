@@ -40,4 +40,5 @@ margin_top = 32.0
 margin_right = 184.0
 margin_bottom = 74.0
 custom_fonts/font = SubResource( 2 )
+text = "Laying"
 align = 1

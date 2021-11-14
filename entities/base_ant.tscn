@@ -156,6 +156,7 @@ shape = SubResource( 19 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 18 )
 animation = "walking"
+frame = 1
 playing = true
 
 [node name="interaction_field" type="Area2D" parent="."]
@@ -169,6 +170,7 @@ visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 30 )
 animation = "walking"
+frame = 1
 playing = true
 
 [node name="Backpacker" type="AnimatedSprite" parent="."]
