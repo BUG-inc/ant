@@ -40,11 +40,11 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=25]
-radius = 8.0
+radius = 30.4138
 
 [node name="base_ant" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.4 )
-collision_mask = 2
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57254
@@ -57,7 +57,8 @@ animation = "walking"
 frame = 2
 playing = true
 
-[node name="interaction_field" type="Area2D" parent="."]
+[node name="interaction_field" type="Area2D" parent="." groups=["npc_ants"]]
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_field"]
 shape = SubResource( 25 )

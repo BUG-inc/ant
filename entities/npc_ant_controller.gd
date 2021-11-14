@@ -7,6 +7,7 @@ var _time_since_change := 0.0
 export (int) var pheromone_range = 2
 export (float) var pheromone_cone_size = 180.0 / 180.0 * PI  # total angle of the cone in radians
 var sensed_pheromones: Array = []
+var _resource_load: Dictionary = {'type': null, 'number': 0}
 export (bool) var enable_debug_drawing = false
 
 
@@ -90,4 +91,14 @@ func _draw():
 			draw_circle(to_local(point), 2.1, Color(0,1,0,1))
 
 func _on_interaction_field_area_entered(area):
-	pass # Replace with function body.
+	if area.is_in_group("resources"):
+		if _resource_load['number'] == 0:
+			_resource_load['number'] = 1
+			_resource_load['type'] = area.get_meta('resource_type')		# switch between resource type
+			print("Updated resource type " + str(_resource_load))
+	elif area.is_in_group("queen"):
+		if _resource_load['number'] > 0:
+			if queen != null:
+				queen.deliver_resource(_resource_load["type"], _resource_load["number"])
+				_resource_load["type"] = ""
+				_resource_load["number"] = 0

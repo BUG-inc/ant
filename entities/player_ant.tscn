@@ -8,11 +8,12 @@
 script = ExtResource( 3 )
 
 [node name="base_ant" parent="." instance=ExtResource( 1 )]
+collision_mask = 0
 script = ExtResource( 2 )
 speed = 75
 
 [node name="AnimatedSprite" parent="base_ant" index="1"]
-frame = 0
+frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )

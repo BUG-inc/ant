@@ -1561,15 +1561,15 @@ tile_set = SubResource( 175 )
 [node name="Foreground" parent="Level" index="1"]
 tile_set = SubResource( 176 )
 
-[node name="Queen" parent="." instance=ExtResource( 4 )]
-position = Vector2( 24.2155, 483.179 )
-
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 
 [node name="AntMaster" parent="." instance=ExtResource( 6 )]
 
 [node name="player" parent="AntMaster" instance=ExtResource( 5 )]
 position = Vector2( 24.7476, 513.837 )
+
+[node name="Queen" parent="AntMaster" instance=ExtResource( 4 )]
+position = Vector2( 22, 468 )
 
 [node name="camera" parent="." instance=ExtResource( 2 )]
 

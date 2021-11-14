@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "PheromoneMap",
 "language": "GDScript",
 "path": "res://entities/pheromone_map.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Queen",
+"language": "GDScript",
+"path": "res://entities/queen.gd"
 } ]
 _global_script_class_icons={
 "AntMaster": "",
-"PheromoneMap": ""
+"PheromoneMap": "",
+"Queen": ""
 }
 
 [application]
@@ -108,6 +114,7 @@ pheromone_action_key={
 2d_physics/layer_1="player"
 2d_physics/layer_2="npc"
 2d_physics/layer_3="foreground"
+2d_physics/layer_4="resources"
 
 [physics]
 

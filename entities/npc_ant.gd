@@ -8,3 +8,7 @@ func set_pheromones_map(map: PheromoneMap):
 	if base_ant:
 		base_ant.set_pheromones_map(map)
 
+func set_queen(queen: Queen):
+	var base_ant = get_node_or_null("base_ant")
+	if base_ant:
+		base_ant.set_queen(queen)
