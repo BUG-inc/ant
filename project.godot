@@ -125,6 +125,7 @@ dig_hole={
 2d_physics/layer_2="npc"
 2d_physics/layer_3="foreground"
 2d_physics/layer_4="resources"
+2d_physics/layer_5="enemy_npc"
 
 [physics]
 

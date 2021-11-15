@@ -68,14 +68,10 @@ change_dir_interval = 7.0
 
 [node name="Default" parent="hud_ants/Node2D3/base_ant" index="1"]
 visible = false
-frame = 1
-
-[node name="Miner" parent="hud_ants/Node2D3/base_ant" index="3"]
-frame = 1
 
 [node name="Backpacker" parent="hud_ants/Node2D3/base_ant" index="4"]
 visible = true
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="hud_ants/Node2D3/base_ant" index="5"]
 frame = 1
@@ -92,13 +88,9 @@ change_dir_interval = 8.0
 
 [node name="Default" parent="hud_ants/Node2D5/base_ant" index="1"]
 visible = false
-frame = 1
-
-[node name="Miner" parent="hud_ants/Node2D5/base_ant" index="3"]
-frame = 1
 
 [node name="Backpacker" parent="hud_ants/Node2D5/base_ant" index="4"]
-frame = 0
+frame = 2
 
 [node name="Enemy" parent="hud_ants/Node2D5/base_ant" index="5"]
 visible = true
@@ -111,14 +103,11 @@ change_dir_interval = 5.0
 
 [node name="Default" parent="hud_ants/Node2D6/base_ant" index="1"]
 visible = false
-frame = 2
+frame = 0
 
 [node name="Miner" parent="hud_ants/Node2D6/base_ant" index="3"]
 visible = true
-frame = 2
-
-[node name="Backpacker" parent="hud_ants/Node2D6/base_ant" index="4"]
-frame = 1
+frame = 0
 
 [node name="menu" parent="." instance=ExtResource( 1 )]
 

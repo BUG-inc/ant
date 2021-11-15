@@ -6,30 +6,29 @@
 [ext_resource path="res://entities/npc_ant_controller.gd" type="Script" id=4]
 [ext_resource path="res://entities/ant_settings/hit_curve.tres" type="Curve" id=5]
 
-[node name="npc_ant" type="Node2D"]
+[node name="enemy_npc_ant" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="base_ant" parent="." groups=["npc_ants"] instance=ExtResource( 1 )]
-collision_layer = 2
+[node name="base_ant" parent="." groups=["enemy_npc_ants"] instance=ExtResource( 1 )]
+collision_layer = 16
 script = ExtResource( 4 )
 speed = 40
 hit_curve = ExtResource( 5 )
 
 [node name="Default" parent="base_ant" index="1"]
-frame = 2
+visible = false
+frame = 3
 
 [node name="Miner" parent="base_ant" index="2"]
-frame = 2
-
-[node name="Backpacker" parent="base_ant" index="3"]
-frame = 1
+frame = 3
 
 [node name="Enemy" parent="base_ant" index="4"]
-frame = 3
+visible = true
+frame = 2
 
 [node name="interaction_field" parent="base_ant" index="5"]
 collision_layer = 0
-collision_mask = 24
+collision_mask = 11
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

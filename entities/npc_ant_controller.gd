@@ -32,7 +32,6 @@ func _physics_process(delta: float) -> void:
 			_dir = _dir.rotated(max(min(angle, direction_change_limit), -direction_change_limit / 2.0))
 		else:
 			_dir = new_dir
-	velocity = move_and_slide(speed * _dir)
 	if enable_debug_drawing:
 		update()
 	
@@ -117,3 +116,8 @@ func _on_interaction_field_area_entered(area):
 				set_change_dir_interval(change_dir_interval)
 				_dir = -_dir
 				_limit_direction_flip = false
+
+
+func _on_interaction_field_body_entered(body):
+	if body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or (body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants"):
+		body.hit(_dir)

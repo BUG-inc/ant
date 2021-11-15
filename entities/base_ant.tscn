@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/sprites/characters/fatant.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/characters/fatant_animated.png" type="Texture" id=2]
@@ -41,9 +41,6 @@ animations = [ {
 "name": "walking",
 "speed": 10.0
 } ]
-
-[sub_resource type="CircleShape2D" id=25]
-radius = 30.4138
 
 [sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 3 )
@@ -158,13 +155,6 @@ frames = SubResource( 18 )
 animation = "walking"
 playing = true
 
-[node name="interaction_field" type="Area2D" parent="." groups=["npc_ants"]]
-collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_field"]
-visible = false
-shape = SubResource( 25 )
-
 [node name="Miner" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 2, 2 )
@@ -185,5 +175,12 @@ visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 42 )
 animation = "walking"
-frame = 3
+frame = 1
 playing = true
+
+[node name="interaction_field" type="Area2D" parent="."]
+scale = Vector2( 1, 1 )
+collision_mask = 31
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interaction_field"]
+polygon = PoolVector2Array( -32.5, -35, -12.5, 0, 12.5, 0, 32.5, -35 )
