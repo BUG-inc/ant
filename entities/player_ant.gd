@@ -8,10 +8,10 @@ var _is_laying = true
 var _is_removing = false
 var _body_ahead = null
 
-
 func _ready():
 	print("player ant ready")
-	active_anim = $Miner
+	set_animation_style("Chief")
+	set_state(State.IDLE)
 
 func set_control(val: bool):
 	_is_control = val
@@ -21,13 +21,11 @@ func set_control(val: bool):
 	else:
 		$player_hud/GridContainer.show()
 
-
 func _physics_process(_delta: float) -> void:
 	if _is_control:
 		_handle_movement()
 		_handle_pheromone()
 		_handle_action()
-
 
 func _handle_pheromone():
 	"""
@@ -50,7 +48,6 @@ func _handle_pheromone():
 func _handle_action():
 	if Input.is_action_just_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
-		print(get_global_mouse_position())
 		if _body_ahead != null:
 			if _body_ahead.has_method("hit"):
 				_body_ahead.hit(_dir)

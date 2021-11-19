@@ -15,20 +15,15 @@ script = ExtResource( 4 )
 speed = 40
 hit_curve = ExtResource( 5 )
 
-[node name="Default" parent="base_ant" index="1"]
-visible = false
-frame = 3
+[node name="interaction_field" parent="base_ant" index="1"]
+collision_layer = 0
+collision_mask = 11
 
-[node name="Miner" parent="base_ant" index="2"]
-frame = 3
+[node name="Default" parent="base_ant" index="2"]
+visible = false
 
 [node name="Enemy" parent="base_ant" index="4"]
 visible = true
-frame = 2
-
-[node name="interaction_field" parent="base_ant" index="5"]
-collision_layer = 0
-collision_mask = 11
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

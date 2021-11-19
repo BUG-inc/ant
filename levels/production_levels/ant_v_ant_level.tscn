@@ -21,7 +21,7 @@ script = ExtResource( 8 )
 debug_mode = true
 
 [node name="player" parent="AntMaster" instance=ExtResource( 3 )]
-position = Vector2( 1374, 905 )
+position = Vector2( 800, 810 )
 
 [node name="Queen" parent="AntMaster" instance=ExtResource( 2 )]
 position = Vector2( 55.8612, 950.562 )
@@ -201,5 +201,7 @@ position = Vector2( 1356, 975 )
 
 [node name="enemy_npc_ant54" parent="enemy_ants_master" instance=ExtResource( 7 )]
 position = Vector2( 1388, 993 )
+
+[connection signal="dig_hole" from="AntMaster/player" to="." method="_on_player_dig_hole"]
 
 [editable path="AntMaster"]
