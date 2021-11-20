@@ -104,7 +104,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -2 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Miner:modulate")
@@ -116,7 +116,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.984314, 0.156863, 0.0705882, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Default:modulate")
@@ -140,7 +140,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.32549, 0.113725, 0.113725, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=45]
@@ -471,7 +471,6 @@ collision_mask = 31
 polygon = PoolVector2Array( -32.5, -35, -12.5, 0, 12.5, 0, 32.5, -35 )
 
 [node name="Default" type="Sprite" parent="."]
-visible = false
 position = Vector2( 5.96046e-08, 0 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
@@ -480,7 +479,6 @@ frame = 5
 
 [node name="Miner" type="Sprite" parent="."]
 visible = false
-modulate = Color( 0.984314, 0.156863, 0.0705882, 1 )
 position = Vector2( 9.83477e-07, -8.04663e-07 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
@@ -488,7 +486,6 @@ hframes = 4
 
 [node name="Enemy" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0, -2 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 7
@@ -502,7 +499,7 @@ anims/idle = SubResource( 48 )
 anims/walking = SubResource( 46 )
 
 [node name="Chief" type="Sprite" parent="."]
-modulate = Color( 0.32549, 0.113725, 0.113725, 1 )
+visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 4

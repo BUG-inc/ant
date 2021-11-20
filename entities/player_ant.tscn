@@ -25,6 +25,7 @@ visible = false
 
 [node name="Chief" parent="base_ant" index="6"]
 visible = true
+modulate = Color( 1, 1, 1, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
@@ -35,6 +36,7 @@ drag_margin_v_enabled = true
 
 [node name="player_hud" parent="base_ant" instance=ExtResource( 4 )]
 
+[connection signal="dig_hole_signal" from="base_ant" to="." method="_on_base_ant_dig_hole_signal"]
 [connection signal="body_entered" from="base_ant/interaction_field" to="base_ant" method="_on_interaction_field_body_entered"]
 [connection signal="body_exited" from="base_ant/interaction_field" to="base_ant" method="_on_interaction_field_body_exited"]
 

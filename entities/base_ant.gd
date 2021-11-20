@@ -5,7 +5,7 @@ var _dir = Vector2()
 var velocity = Vector2()
 var pheromone_map: PheromoneMap = null
 var queen : Queen = null
-onready var active_sprite = null
+var active_sprite = null
 var _hit_dir:= Vector2()
 export (int) var hit_points = 3
 export (Curve) var hit_curve
@@ -32,7 +32,8 @@ func _ready():
 	for sprite in [$Default, $Miner, $Enemy, $Chief]:
 		if sprite.is_visible():
 			if active_sprite != null:
-				print("WARNING: Multiple sprites innitially visible for ant")
+				active_sprite.hide()
+				print("WARNING: Multiple sprites innitially visible for ant node" + self.name)
 			active_sprite = sprite
 
 func set_state(state: int):
