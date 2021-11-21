@@ -25,7 +25,6 @@ visible = false
 
 [node name="Chief" parent="base_ant" index="6"]
 visible = true
-modulate = Color( 1, 1, 1, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )

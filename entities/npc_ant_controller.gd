@@ -21,6 +21,9 @@ func _ready():
 func set_change_dir_interval(val: float):
 	_change_dir_interval = val
 	
+func hit(direction: Vector2):
+	_dir = direction
+	
 func _physics_process(delta: float) -> void:
 	_time_since_change += delta
 	if _time_since_change > _change_dir_interval:
@@ -117,5 +120,11 @@ func _on_interaction_field_area_entered(area):
 				_limit_direction_flip = false
 
 func _on_interaction_field_body_entered(body):
-	if body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or (body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants"):
-		body.hit(_dir)
+	if _current_state != State.WALKING and _current_state != State.IDLE:
+		return
+	if (
+		body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
+		(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
+	):
+		set_state(State.ATTACKING)
+		print("Set attacking")

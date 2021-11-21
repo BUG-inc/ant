@@ -1,17 +1,14 @@
 extends "res://entities/entity.gd"
 
+class_name BaseAnt
+
 export (int) var speed = 200
 var _dir = Vector2()
 var velocity = Vector2()
 var pheromone_map: PheromoneMap = null
 var queen : Queen = null
 var active_sprite = null
-var _hit_dir:= Vector2()
 export (int) var hit_points = 3
-export (Curve) var hit_curve
-export (float, 0.1, 2.0) var hit_duration = 0.5
-export (float, 0.0, 100) var hit_speed = 20
-var _hit_time: float = hit_duration
 
 enum State {
 	WALKING=0
@@ -24,10 +21,6 @@ const STATE_NAMES = ["walking", "attacking", "dead", "hurting", "idle"]
 var _current_state: int = State.IDLE
 
 func _ready():
-	if hit_curve == null:
-		hit_curve = Curve.instance()
-		hit_curve.add_point(Vector2(0, 1.0))
-		hit_curve.add_point(Vector2(1.0, 0.0))
 	# initialize active_sprite with the one that is set visible in the scene
 	for sprite in [$Default, $Miner, $Enemy, $Chief]:
 		if sprite.is_visible():
@@ -37,8 +30,11 @@ func _ready():
 			active_sprite = sprite
 
 func set_state(state: int):
-	_current_state = state
-	$AnimationPlayer.play(STATE_NAMES[_current_state])
+	if state != _current_state:
+		print("Setting state " + STATE_NAMES[state])
+		_current_state = state
+		if _current_state == State.ATTACKING or _current_state == State.IDLE or _current_state == State.DEAD:
+			_dir = Vector2(0, 0)
 
 func set_pheromones_map(map: PheromoneMap):
 	pheromone_map = map
@@ -55,28 +51,27 @@ func set_animation_style(type: String):
 	active_sprite.show()
 	
 func hit(direction: Vector2):
-	print("Ant was hit")
-	if _hit_time >= hit_duration:
-		_hit_time = 0.0
-		_hit_dir = direction
+	if _current_state != State.HURTING and _current_state != State.DEAD:
+		print("Ant was hit")
 		hit_points -= 1
 		if hit_points == 0:
 			die()
+		else:
+			_dir = direction
+			set_state(State.HURTING)
 		
 func die():
 	set_state(State.DEAD)
-	queue_free()
 
-func _physics_process(delta: float) -> void:
-	if _hit_time < hit_duration:
-		# TODO this doesn't really work
-		velocity = move_and_slide(hit_speed * 2.0 * (hit_curve.interpolate(_hit_time / hit_duration) - 0.5) * _hit_dir)
-		_hit_time += delta
-	else:
-		velocity = move_and_slide(speed * _dir)
+func _physics_process(_delta: float) -> void:
+	if _current_state == State.DEAD:
+		velocity = Vector2(0, 0)
+		return
+	velocity = move_and_slide(speed * _dir)
 
 func _process(_delta: float) -> void:
 	_update_animation(_dir)
+	$AnimationPlayer.play(STATE_NAMES[_current_state])
 
 func _update_animation(dir: Vector2) -> void:
 	if dir.x > 0:
@@ -89,6 +84,7 @@ func _update_animation(dir: Vector2) -> void:
 		rotation = atan2(velocity.y, velocity.x) + PI/2
 	
 	if is_equal_approx(velocity.length(), 0):
-		set_state(State.IDLE)
+		if _current_state == State.WALKING:
+			set_state(State.IDLE)
 	else:
 		set_state(State.WALKING)

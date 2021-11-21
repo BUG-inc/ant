@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/sprites/characters/fatant_animated_v2.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/characters/enemy_ant_v2.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/characters/hat1fatant_animated.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/characters/backpackfatant_animated.png" type="Texture" id=4]
+[ext_resource path="res://entities/base_ant.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=19]
 radius = 13.0978
@@ -146,7 +147,6 @@ tracks/10/keys = {
 [sub_resource type="Animation" id=45]
 resource_name = "attacking"
 length = 0.8
-loop = true
 step = 0.04
 tracks/0/type = "value"
 tracks/0/path = NodePath("Default:frame")
@@ -349,6 +349,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "set_state"
+} ]
+}
 
 [sub_resource type="Animation" id=48]
 resource_name = "idle"
@@ -459,6 +473,7 @@ tracks/3/keys = {
 [node name="base_ant" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.4 )
 collision_mask = 12
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57254

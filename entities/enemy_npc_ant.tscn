@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/base_ant.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/npc_ant.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
 [ext_resource path="res://entities/npc_ant_controller.gd" type="Script" id=4]
-[ext_resource path="res://entities/ant_settings/hit_curve.tres" type="Curve" id=5]
 
 [node name="enemy_npc_ant" type="Node2D"]
 script = ExtResource( 2 )
@@ -13,7 +12,6 @@ script = ExtResource( 2 )
 collision_layer = 16
 script = ExtResource( 4 )
 speed = 40
-hit_curve = ExtResource( 5 )
 
 [node name="interaction_field" parent="base_ant" index="1"]
 collision_layer = 0

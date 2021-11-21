@@ -48,6 +48,7 @@ func _handle_pheromone():
 func _handle_action():
 	if Input.is_action_just_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
+		set_state(State.ATTACKING)
 		if _body_ahead != null:
 			if _body_ahead.has_method("hit"):
 				_body_ahead.hit(_dir)
@@ -71,14 +72,13 @@ func _handle_movement():
 	if Input.is_action_pressed("ui_up"):
 		_dir.y -= 1
 	if Input.is_action_pressed("ui_down"):
-		_dir.y += 1
-
+		_dir.y += 1 
 	_dir = _dir.normalized()
-
+	if _dir.length() > 0.0:
+		set_state(State.WALKING)
 
 func _on_interaction_field_body_entered(body):
 	_body_ahead = body
-
 
 func _on_interaction_field_body_exited(body):
 	if _body_ahead == body:
