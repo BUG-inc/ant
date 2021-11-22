@@ -6,7 +6,6 @@ signal dig_hole_signal(position)
 var _is_control = true
 var _is_laying = true
 var _is_removing = false
-var _body_ahead = null
 
 func _ready():
 	print("player ant ready")
@@ -49,9 +48,11 @@ func _handle_action():
 	if Input.is_action_just_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
 		set_state(State.ATTACKING)
-		if _body_ahead != null:
-			if _body_ahead.has_method("hit"):
-				_body_ahead.hit(_dir)
+		if len(_bodies_in_interaction_field) > 0:
+			for body in _bodies_in_interaction_field:
+				if _bodies_in_interaction_field[0].has_method("hit"):
+					_bodies_in_interaction_field[0].hit(_dir)
+					break
 
 func _toggle_pheromone_mode():
 	var temp = _is_laying
@@ -76,10 +77,3 @@ func _handle_movement():
 	_dir = _dir.normalized()
 	if _dir.length() > 0.0:
 		set_state(State.WALKING)
-
-func _on_interaction_field_body_entered(body):
-	_body_ahead = body
-
-func _on_interaction_field_body_exited(body):
-	if _body_ahead == body:
-		_body_ahead = null

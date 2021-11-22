@@ -9,6 +9,9 @@ var pheromone_map: PheromoneMap = null
 var queen : Queen = null
 var active_sprite = null
 export (int) var hit_points = 3
+var _death_animation_finished: bool = false
+
+var _bodies_in_interaction_field = []
 
 enum State {
 	WALKING=0
@@ -31,10 +34,12 @@ func _ready():
 
 func set_state(state: int):
 	if state != _current_state:
-		print("Setting state " + STATE_NAMES[state])
 		_current_state = state
 		if _current_state == State.ATTACKING or _current_state == State.IDLE or _current_state == State.DEAD:
-			_dir = Vector2(0, 0)
+			velocity = Vector2(0, 0)
+
+func is_dead():
+	return _current_state == State.DEAD
 
 func set_pheromones_map(map: PheromoneMap):
 	pheromone_map = map
@@ -61,17 +66,24 @@ func hit(direction: Vector2):
 			set_state(State.HURTING)
 		
 func die():
+	print("Ant die!")
+	rotation = 0.0 # PI/2.0
 	set_state(State.DEAD)
 
 func _physics_process(_delta: float) -> void:
 	if _current_state == State.DEAD:
 		velocity = Vector2(0, 0)
 		return
-	velocity = move_and_slide(speed * _dir)
+	if _current_state == State.WALKING or _current_state == State.HURTING:
+		velocity = move_and_slide(speed * _dir)
 
 func _process(_delta: float) -> void:
 	_update_animation(_dir)
-	$AnimationPlayer.play(STATE_NAMES[_current_state])
+	# handle automatic state transitions
+	if is_equal_approx(velocity.length(), 0) and _current_state == State.WALKING:
+			set_state(State.IDLE)
+	elif not is_equal_approx(velocity.length(), 0) and _current_state == State.IDLE:
+		set_state(State.WALKING)
 
 func _update_animation(dir: Vector2) -> void:
 	if dir.x > 0:
@@ -82,9 +94,33 @@ func _update_animation(dir: Vector2) -> void:
 
 	if !is_equal_approx(velocity.length(), 0):
 		rotation = atan2(velocity.y, velocity.x) + PI/2
+	if _current_state != State.DEAD or not _death_animation_finished:
+		$AnimationPlayer.play(STATE_NAMES[_current_state])
 	
-	if is_equal_approx(velocity.length(), 0):
-		if _current_state == State.WALKING:
-			set_state(State.IDLE)
-	else:
+func _on_interaction_field_body_entered(body):
+	_bodies_in_interaction_field.append(body)
+	_body_entered_interaction_field(body)
+
+func _on_interaction_field_body_exited(body):
+	_bodies_in_interaction_field.erase(body)
+	_body_left_interaction_field(body)
+	
+func _body_entered_interaction_field(_body: Node2D):
+	# function for inheriting classes
+	pass
+	
+func _body_left_interaction_field(_body: Node2D):
+	# function for inheriting classes
+	pass
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	#print(anim_name + " " + STATE_NAMES[_current_state])
+	if _current_state == State.ATTACKING:
+		print(len(_bodies_in_interaction_field))
+		if len(_bodies_in_interaction_field) > 0:
+			_bodies_in_interaction_field[0].hit(_dir)
+		set_state(State.IDLE)
+	elif _current_state == State.HURTING:
 		set_state(State.WALKING)
+	elif _current_state == State.DEAD and anim_name == STATE_NAMES[State.DEAD]:
+		_death_animation_finished = true

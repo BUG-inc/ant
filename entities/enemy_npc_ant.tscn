@@ -27,6 +27,5 @@ visible = true
 stream = ExtResource( 3 )
 
 [connection signal="area_entered" from="base_ant/interaction_field" to="base_ant" method="_on_interaction_field_area_entered"]
-[connection signal="body_entered" from="base_ant/interaction_field" to="base_ant" method="_on_interaction_field_body_entered"]
 
 [editable path="base_ant"]
