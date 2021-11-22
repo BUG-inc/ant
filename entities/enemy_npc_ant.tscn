@@ -5,17 +5,23 @@
 [ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=3]
 [ext_resource path="res://entities/npc_ant_controller.gd" type="Script" id=4]
 
-[node name="npc_ant" type="Node2D"]
+[node name="enemy_npc_ant" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="base_ant" parent="." groups=["npc_ants"] instance=ExtResource( 1 )]
-collision_layer = 2
+[node name="base_ant" parent="." groups=["enemy_npc_ants"] instance=ExtResource( 1 )]
+collision_layer = 16
 script = ExtResource( 4 )
 speed = 40
 
 [node name="interaction_field" parent="base_ant" index="1"]
 collision_layer = 0
-collision_mask = 24
+collision_mask = 11
+
+[node name="Default" parent="base_ant" index="2"]
+visible = false
+
+[node name="Enemy" parent="base_ant" index="4"]
+visible = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

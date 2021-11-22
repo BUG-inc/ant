@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/ant_master.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "BaseAnt",
+"language": "GDScript",
+"path": "res://entities/base_ant.gd"
+}, {
 "base": "Node2D",
 "class": "PheromoneMap",
 "language": "GDScript",
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AntMaster": "",
+"BaseAnt": "",
 "PheromoneMap": "",
 "Queen": ""
 }
@@ -125,6 +131,7 @@ dig_hole={
 2d_physics/layer_2="npc"
 2d_physics/layer_3="foreground"
 2d_physics/layer_4="resources"
+2d_physics/layer_5="enemy_npc"
 
 [physics]
 

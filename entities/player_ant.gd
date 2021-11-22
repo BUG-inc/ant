@@ -6,11 +6,12 @@ signal dig_hole_signal(position)
 var _is_control = true
 var _is_laying = true
 var _is_removing = false
-
+var _body_ahead = null
 
 func _ready():
 	print("player ant ready")
-	active_anim = $Miner
+	set_animation_style("Chief")
+	set_state(State.IDLE)
 
 func set_control(val: bool):
 	_is_control = val
@@ -20,13 +21,11 @@ func set_control(val: bool):
 	else:
 		$player_hud/GridContainer.show()
 
-
 func _physics_process(_delta: float) -> void:
 	if _is_control:
 		_handle_movement()
 		_handle_pheromone()
-		_handle_terrain_destruction()
-
+		_handle_action()
 
 func _handle_pheromone():
 	"""
@@ -46,10 +45,13 @@ func _handle_pheromone():
 		elif _is_removing:
 			pheromone_map.remove_pheromone(global_position)
 
-func _handle_terrain_destruction():
+func _handle_action():
 	if Input.is_action_just_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
-		print(get_global_mouse_position())
+		set_state(State.ATTACKING)
+		if _body_ahead != null:
+			if _body_ahead.has_method("hit"):
+				_body_ahead.hit(_dir)
 
 func _toggle_pheromone_mode():
 	var temp = _is_laying
@@ -59,7 +61,6 @@ func _toggle_pheromone_mode():
 		$player_hud/GridContainer/pheromone_val.text = "Laying"
 	else:
 		$player_hud/GridContainer/pheromone_val.text = "Removing"
-
 
 		
 func _handle_movement():
@@ -71,9 +72,14 @@ func _handle_movement():
 	if Input.is_action_pressed("ui_up"):
 		_dir.y -= 1
 	if Input.is_action_pressed("ui_down"):
-		_dir.y += 1
-
+		_dir.y += 1 
 	_dir = _dir.normalized()
-	
+	if _dir.length() > 0.0:
+		set_state(State.WALKING)
 
-	velocity = move_and_slide(speed * _dir)
+func _on_interaction_field_body_entered(body):
+	_body_ahead = body
+
+func _on_interaction_field_body_exited(body):
+	if _body_ahead == body:
+		_body_ahead = null

@@ -66,20 +66,6 @@ position = Vector2( 327.937, 731.042 )
 scale = Vector2( 5, 5 )
 change_dir_interval = 7.0
 
-[node name="Default" parent="hud_ants/Node2D3/base_ant" index="1"]
-visible = false
-frame = 1
-
-[node name="Miner" parent="hud_ants/Node2D3/base_ant" index="3"]
-frame = 1
-
-[node name="Backpacker" parent="hud_ants/Node2D3/base_ant" index="4"]
-visible = true
-frame = 0
-
-[node name="Enemy" parent="hud_ants/Node2D3/base_ant" index="5"]
-frame = 1
-
 [node name="Node2D4" parent="hud_ants" instance=ExtResource( 2 )]
 position = Vector2( 43.6744, 96.8403 )
 scale = Vector2( 5, 5 )
@@ -90,35 +76,16 @@ position = Vector2( 738.19, 559.057 )
 scale = Vector2( 5, 5 )
 change_dir_interval = 8.0
 
-[node name="Default" parent="hud_ants/Node2D5/base_ant" index="1"]
-visible = false
-frame = 1
-
-[node name="Miner" parent="hud_ants/Node2D5/base_ant" index="3"]
-frame = 1
-
-[node name="Backpacker" parent="hud_ants/Node2D5/base_ant" index="4"]
-frame = 0
-
-[node name="Enemy" parent="hud_ants/Node2D5/base_ant" index="5"]
+[node name="Enemy" parent="hud_ants/Node2D5/base_ant" index="4"]
 visible = true
-frame = 1
 
 [node name="Node2D6" parent="hud_ants" instance=ExtResource( 2 )]
 position = Vector2( 428.679, 403.824 )
 scale = Vector2( 5, 5 )
 change_dir_interval = 5.0
 
-[node name="Default" parent="hud_ants/Node2D6/base_ant" index="1"]
-visible = false
-frame = 2
-
 [node name="Miner" parent="hud_ants/Node2D6/base_ant" index="3"]
 visible = true
-frame = 2
-
-[node name="Backpacker" parent="hud_ants/Node2D6/base_ant" index="4"]
-frame = 1
 
 [node name="menu" parent="." instance=ExtResource( 1 )]
 

@@ -52,4 +52,4 @@ func _on_Queen_resource_update(type: String, number: int):
 
 
 func _on_player_dig_hole(position):
-	$Level/Foreground.damage_cell(position)
+	$Level/Foreground.dig_hole(position)

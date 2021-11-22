@@ -1,33 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/base_ant.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player_ant.gd" type="Script" id=2]
 [ext_resource path="res://entities/player_interface.gd" type="Script" id=3]
 [ext_resource path="res://overlays/player_hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/ant_settings/hit_curve.tres" type="Curve" id=5]
 
 [node name="player" type="Node2D"]
 z_index = 10
 script = ExtResource( 3 )
 
-[node name="base_ant" parent="." instance=ExtResource( 1 )]
-collision_mask = 0
+[node name="base_ant" parent="." groups=["player"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 speed = 75
+hit_curve = ExtResource( 5 )
 tool_point = Vector2( 0, -25 )
 
-[node name="Default" parent="base_ant" index="1"]
+[node name="interaction_field" parent="base_ant" index="1"]
+collision_layer = 0
+collision_mask = 28
+
+[node name="Default" parent="base_ant" index="2"]
 visible = false
-frame = 1
 
-[node name="Miner" parent="base_ant" index="3"]
+[node name="Chief" parent="base_ant" index="6"]
 visible = true
-frame = 1
-
-[node name="Backpacker" parent="base_ant" index="4"]
-frame = 1
-
-[node name="Enemy" parent="base_ant" index="5"]
-frame = 0
 
 [node name="Camera2D" type="Camera2D" parent="base_ant"]
 scale = Vector2( 2.5, 2.5 )
@@ -39,5 +36,7 @@ drag_margin_v_enabled = true
 [node name="player_hud" parent="base_ant" instance=ExtResource( 4 )]
 
 [connection signal="dig_hole_signal" from="base_ant" to="." method="_on_base_ant_dig_hole_signal"]
+[connection signal="body_entered" from="base_ant/interaction_field" to="base_ant" method="_on_interaction_field_body_entered"]
+[connection signal="body_exited" from="base_ant/interaction_field" to="base_ant" method="_on_interaction_field_body_exited"]
 
 [editable path="base_ant"]

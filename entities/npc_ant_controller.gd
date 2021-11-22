@@ -21,9 +21,11 @@ func _ready():
 func set_change_dir_interval(val: float):
 	_change_dir_interval = val
 	
+func hit(direction: Vector2):
+	_dir = direction
+	
 func _physics_process(delta: float) -> void:
 	_time_since_change += delta
-
 	if _time_since_change > _change_dir_interval:
 		_time_since_change = 0.0
 		var new_dir: Vector2 = _change_dir()
@@ -32,7 +34,6 @@ func _physics_process(delta: float) -> void:
 			_dir = _dir.rotated(max(min(angle, direction_change_limit), -direction_change_limit / 2.0))
 		else:
 			_dir = new_dir
-	velocity = move_and_slide(speed * _dir)
 	if enable_debug_drawing:
 		update()
 	
@@ -103,7 +104,7 @@ func _on_interaction_field_area_entered(area):
 		if _resource_load['number'] == 0:
 			_resource_load['number'] = 1
 			_resource_load['type'] = area.get_meta('resource_type')		# switch between resource type
-			change_animation_style("Backpacker")
+			set_animation_style("Miner")
 			set_change_dir_interval(backpacker_change_dir_interval)
 			_dir = -_dir
 			_limit_direction_flip = true
@@ -113,7 +114,17 @@ func _on_interaction_field_area_entered(area):
 				queen.deliver_resource(_resource_load["type"], _resource_load["number"])
 				_resource_load["type"] = ""
 				_resource_load["number"] = 0
-				change_animation_style("Default")
+				set_animation_style("Default")
 				set_change_dir_interval(change_dir_interval)
 				_dir = -_dir
 				_limit_direction_flip = false
+
+func _on_interaction_field_body_entered(body):
+	if _current_state != State.WALKING and _current_state != State.IDLE:
+		return
+	if (
+		body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
+		(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
+	):
+		set_state(State.ATTACKING)
+		print("Set attacking")
