@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://entities/coins.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/camera.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sprites/background/ant_backgroun_tilemap.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/background/ant_bg_v2.png" type="Texture" id=12]
 [ext_resource path="res://levels/level_layouts/level_interface.gd" type="Script" id=13]
+[ext_resource path="res://overlays/pause_menu.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=175]
 resource_local_to_scene = true
@@ -1552,9 +1553,11 @@ resource_local_to_scene = true
 28/z_index = 0
 
 [node name="intro_level" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 8 )
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
+pause_mode = 1
 script = ExtResource( 13 )
 
 [node name="Background" parent="Level" index="0"]
@@ -1564,8 +1567,10 @@ tile_set = SubResource( 175 )
 tile_set = SubResource( 176 )
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
+pause_mode = 1
 
 [node name="AntMaster" parent="." instance=ExtResource( 6 )]
+pause_mode = 1
 
 [node name="player" parent="AntMaster" instance=ExtResource( 5 )]
 position = Vector2( 24.7476, 513.837 )
@@ -1574,9 +1579,11 @@ position = Vector2( 24.7476, 513.837 )
 position = Vector2( 22, 468 )
 
 [node name="camera" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
 scale = Vector2( 0.720927, 1 )
 
 [node name="Items" type="Node2D" parent="."]
+pause_mode = 1
 
 [node name="coins2" parent="Items" instance=ExtResource( 1 )]
 position = Vector2( 436.313, 280.292 )
@@ -1596,7 +1603,14 @@ position = Vector2( 147.487, 289.731 )
 [node name="coins6" parent="Items" instance=ExtResource( 1 )]
 position = Vector2( 417.435, 487.001 )
 
+[node name="pause_menu" parent="." instance=ExtResource( 14 )]
+
+[node name="menu" parent="pause_menu" index="0"]
+visible = false
+
 [connection signal="dig_hole" from="AntMaster/player" to="Level" method="_on_player_dig_hole"]
 [connection signal="resource_update" from="AntMaster/Queen" to="." method="_on_Queen_resource_update"]
+[connection signal="pressed" from="pause_menu/menu/Button" to="." method="_on_main_menu_Button_pressed"]
 
 [editable path="Level"]
+[editable path="pause_menu"]

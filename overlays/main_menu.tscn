@@ -9,7 +9,7 @@ outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="Node2D"]
 
 [node name="Title" type="Label" parent="."]
 margin_right = 1024.0

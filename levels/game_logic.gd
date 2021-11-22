@@ -18,12 +18,28 @@ func _ready():
 
 
 func _process(delta):
-	if _player && Input.is_action_just_pressed("camera_swap"):
-		set_player_mode(!_player_mode)
+	if Input.is_action_just_pressed("pause_menu") && !get_tree().paused:
+		show_menu()
+	elif Input.is_action_just_pressed("pause_menu") && get_tree().paused:
+		hide_menu()
+	else:
+		if _player && Input.is_action_just_pressed("camera_swap"):
+			set_player_mode(!_player_mode)
 
-	if !_player_mode:
-		_management_loop(delta)
+		if !_player_mode:
+			_management_loop(delta)
 	
+
+func show_menu():
+	"""Display the pause menu."""	
+	$pause_menu.get_child(0).show()  # https://godotengine.org/qa/55202/how-to-hide-a-canvas-layer-node
+	get_tree().paused = true
+
+func hide_menu():
+	"""Hide the pause menu."""	
+	$pause_menu.get_child(0).hide()  # https://godotengine.org/qa/55202/how-to-hide-a-canvas-layer-node
+	get_tree().paused = false
+
 		
 func _physics_process(_delta: float) -> void:
 	if not _player_mode:
@@ -53,3 +69,8 @@ func _on_Queen_resource_update(type: String, number: int):
 
 func _on_player_dig_hole(position):
 	$Level/Foreground.dig_hole(position)
+
+
+func _on_main_menu_Button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene("res://main.tscn")

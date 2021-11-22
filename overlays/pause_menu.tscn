@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Font/bold_font.tres" type="DynamicFont" id=1]
+
+[node name="pause_menu" type="CanvasLayer"]
+pause_mode = 2
+
+[node name="menu" type="Node2D" parent="."]
+pause_mode = 2
+
+[node name="Button" type="Button" parent="menu"]
+pause_mode = 2
+margin_left = 346.234
+margin_top = 242.562
+margin_right = 649.234
+margin_bottom = 290.562
+custom_fonts/font = ExtResource( 1 )
+text = "Back to main menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
