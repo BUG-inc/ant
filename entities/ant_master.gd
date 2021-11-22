@@ -15,13 +15,15 @@ func _ready():
 func spawn_npc_ant(position: Vector2):
 	var new_ant = _npc_ant.instance()
 	new_ant.set_pheromones_map($PheromoneMap)
+
 	var queen: Queen = get_node_or_null("Queen")
 	if queen != null:
 		new_ant.set_queen($Queen)
+
 	new_ant.position = position
 	new_ant.add_to_group("ants")
-	# TODO set pheromones map
 	add_child(new_ant)
+
 	if _can_play_sound():
 			new_ant.get_node("AudioStreamPlayer").playing = true
 

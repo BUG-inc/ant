@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex"
+path="res://.import/poisonant_animated.png-bc608652827cf172618e384ad0b41810.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/icon_pheromones.png"
-dest_files=[ "res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex" ]
+source_file="res://assets/sprites/characters/poisonant_animated.png"
+dest_files=[ "res://.import/poisonant_animated.png-bc608652827cf172618e384ad0b41810.stex" ]
 
 [params]
 

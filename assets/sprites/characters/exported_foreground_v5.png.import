@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex"
+path="res://.import/exported_foreground_v5.png-793e3828e3a17c645912c836fda7be12.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/icon_pheromones.png"
-dest_files=[ "res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex" ]
+source_file="res://assets/sprites/characters/exported_foreground_v5.png"
+dest_files=[ "res://.import/exported_foreground_v5.png-793e3828e3a17c645912c836fda7be12.stex" ]
 
 [params]
 

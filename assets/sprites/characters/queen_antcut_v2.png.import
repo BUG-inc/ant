@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex"
+path="res://.import/queen_antcut_v2.png-69e6125a78970ba85132deabf06e196e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/icon_pheromones.png"
-dest_files=[ "res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex" ]
+source_file="res://assets/sprites/characters/queen_antcut_v2.png"
+dest_files=[ "res://.import/queen_antcut_v2.png-69e6125a78970ba85132deabf06e196e.stex" ]
 
 [params]
 

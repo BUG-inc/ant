@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex"
+path="res://.import/enemy_ant_v2.png-e0bd19d95e9ad73f9e6f6c282592a9a9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/icon_pheromones.png"
-dest_files=[ "res://.import/icon_pheromones.png-e9f1f998ae734804d91a15c68c494290.stex" ]
+source_file="res://assets/sprites/characters/enemy_ant_v2.png"
+dest_files=[ "res://.import/enemy_ant_v2.png-e0bd19d95e9ad73f9e6f6c282592a9a9.stex" ]
 
 [params]
 
