@@ -77,7 +77,7 @@ func remove_pheromone(position: Vector2):
 				var x_index: int = cell_index[1] + j 
 				cells[y_index][x_index] = 0.0
 				if pheromones.has([y_index, x_index]):
-					print("Removing particle")
+					# print("Removing particle")
 					pheromones[[y_index, x_index]].get_node("Particles2D").set_one_shot(true)
 					pheromones[[y_index, x_index]].get_node("Particles2D").set_emitting(false)
 					pheromones[[y_index, x_index]].queue_free()

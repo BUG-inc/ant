@@ -3,7 +3,6 @@ class_name AntMaster
 
 var _npc_ant = preload("res://entities/npc_ant.tscn")
 
-
 func _ready():
 	var queen: Queen = get_node_or_null("Queen")
 	for n in get_children():
@@ -11,21 +10,12 @@ func _ready():
 			n.set_pheromones_map($PheromoneMap)
 		if queen != null and n.has_method("set_queen"):
 			n.set_queen($Queen)
+	if queen != null:
+		$Queen.connect("birthing", self, "_on_queen_birthing")
 
 func spawn_npc_ant(position: Vector2):
-	var new_ant = _npc_ant.instance()
-	new_ant.set_pheromones_map($PheromoneMap)
-
-	var queen: Queen = get_node_or_null("Queen")
-	if queen != null:
-		new_ant.set_queen($Queen)
-
+	var new_ant = _create_ant()
 	new_ant.position = position
-	new_ant.add_to_group("ants")
-	add_child(new_ant)
-
-	if _can_play_sound():
-			new_ant.get_node("AudioStreamPlayer").playing = true
 
 func killall():
 	for ant in get_tree().get_nodes_in_group("ants"):
@@ -35,9 +25,19 @@ func killall():
 	if queen != null:
 		$Queen.reset_resources()
 
-func _can_play_sound() -> bool:
-	var ants = get_tree().get_nodes_in_group("ants")
-	for ant in ants:
-		if ant.get_node("AudioStreamPlayer").playing:
-			return false
-	return true
+func _create_ant():
+	var new_ant = _npc_ant.instance()
+	new_ant.set_pheromones_map($PheromoneMap)
+
+	var queen: Queen = get_node_or_null("Queen")
+	if queen != null:
+		new_ant.set_queen($Queen)
+	new_ant.add_to_group("ants")
+	add_child(new_ant)
+	return new_ant
+
+func _on_queen_birthing(position: Vector2):
+	"""Spawn new ant with special birthing animation."""
+	print("Spawning ant in :", position)
+	var new_ant = _create_ant()
+	new_ant.position = position

@@ -69,6 +69,7 @@ radius = 19.0263
 
 [node name="coins" type="StaticBody2D"]
 script = ExtResource( 3 )
+total_resources = 500
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
@@ -81,7 +82,9 @@ shape = SubResource( 16 )
 
 [node name="gatherArea" type="Area2D" parent="." groups=["coins", "resources"]]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 32
 
 [node name="gather_shape" type="CollisionShape2D" parent="gatherArea"]
 shape = SubResource( 17 )
+
+[connection signal="area_entered" from="gatherArea" to="." method="_on_gatherArea_area_entered"]

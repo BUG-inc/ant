@@ -108,6 +108,7 @@ func _draw():
 func _on_interaction_field_area_entered(area):
 	if area.is_in_group("resources"):
 		if _resource_load['number'] == 0:
+			get_node("interaction_field").set_collision_mask_bit(6, 0)
 			_resource_load['number'] = 1
 			_resource_load['type'] = area.get_meta('resource_type')		# switch between resource type
 			set_animation_style("Miner")
@@ -118,6 +119,7 @@ func _on_interaction_field_area_entered(area):
 		if _resource_load['number'] > 0:
 			if queen != null:
 				queen.deliver_resource(_resource_load["type"], _resource_load["number"])
+				get_node("interaction_field").set_collision_mask_bit(6, 1)
 				_resource_load["type"] = ""
 				_resource_load["number"] = 0
 				set_animation_style("Default")

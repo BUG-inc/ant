@@ -137,6 +137,7 @@ pause_menu={
 2d_physics/layer_3="foreground"
 2d_physics/layer_4="resources"
 2d_physics/layer_5="enemy_npc"
+2d_physics/layer_6="gatherer"
 
 [physics]
 

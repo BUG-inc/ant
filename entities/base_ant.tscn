@@ -481,6 +481,7 @@ rotation = 1.57254
 shape = SubResource( 19 )
 
 [node name="interaction_field" type="Area2D" parent="."]
+collision_layer = 33
 collision_mask = 31
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interaction_field"]
@@ -518,6 +519,7 @@ anims/idle = SubResource( 48 )
 anims/walking = SubResource( 46 )
 
 [node name="Chief" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 0.0650516 )

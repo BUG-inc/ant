@@ -59,7 +59,7 @@ func set_animation_style(type: String):
 	
 func hit(direction: Vector2):
 	if _current_state != State.HURTING and _current_state != State.DEAD:
-		print("Ant was hit")
+		# print("Ant was hit")
 		hit_points -= 1
 		if hit_points == 0:
 			die()

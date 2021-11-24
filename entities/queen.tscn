@@ -1,11 +1,17 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sprites/characters/queen_antcut.png" type="Texture" id=1]
 [ext_resource path="res://entities/queen.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/characters/queen_antcut_v2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=4]
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 38, 22 )
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 228, 0, 38, 22 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 266, 0, 38, 22 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -41,10 +47,10 @@ region = Rect2( 266, 0, 38, 22 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 4 ) ],
+"frames": [ SubResource( 15 ), SubResource( 17 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
@@ -59,26 +65,150 @@ height = 21.6276
 [sub_resource type="CircleShape2D" id=13]
 radius = 21.0
 
+[sub_resource type="Animation" id=14]
+resource_name = "BirthNewAnt"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("MainAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 2, 2.001 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop"
+}, {
+"args": [  ],
+"method": "hide"
+}, {
+"args": [ "feasting", false ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "show"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BirthSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11, 12, 13 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "birthing"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("BirthSprite")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "show"
+}, {
+"args": [  ],
+"method": "hide"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("FeastTimer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 5 ],
+"method": "start"
+} ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BirthSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+
 [node name="Queen" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 5.76691 ],
+"_edit_vertical_guides_": [ 12.1026 ]
+}
+birth_ant_position = Vector2( 12, 3 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="MainAnimation" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "feasting"
-frame = 1
+animation = "idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 2.42007, 4.65538 )
 rotation = 1.5708
 shape = SubResource( 3 )
 
 [node name="delivery_area" type="Area2D" parent="." groups=["queen"]]
+visible = false
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="delivery_area"]
 position = Vector2( 3, 5 )
 shape = SubResource( 13 )
+
+[node name="BirthAnimator" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/BirthNewAnt = SubResource( 14 )
+anims/RESET = SubResource( 16 )
+
+[node name="BirthSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+hframes = 14
+frame = 6
+
+[node name="FeastTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="timeout" from="FeastTimer" to="." method="_on_FeastTimer_timeout"]

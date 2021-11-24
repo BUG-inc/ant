@@ -1573,10 +1573,11 @@ pause_mode = 1
 pause_mode = 1
 
 [node name="player" parent="AntMaster" instance=ExtResource( 5 )]
-position = Vector2( 24.7476, 513.837 )
+position = Vector2( 26.0075, 497.143 )
 
 [node name="Queen" parent="AntMaster" instance=ExtResource( 4 )]
 position = Vector2( 22, 468 )
+init_coins = 20
 
 [node name="camera" parent="." instance=ExtResource( 2 )]
 pause_mode = 1
@@ -1602,6 +1603,18 @@ position = Vector2( 147.487, 289.731 )
 
 [node name="coins6" parent="Items" instance=ExtResource( 1 )]
 position = Vector2( 417.435, 487.001 )
+
+[node name="coins7" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 58.1576, 535.685 )
+total_resources = 10
+
+[node name="coins8" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( -9.54593, 535.633 )
+total_resources = 10
+
+[node name="coins9" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 21.7885, 532.728 )
+total_resources = 10
 
 [node name="pause_menu" parent="." instance=ExtResource( 14 )]
 
