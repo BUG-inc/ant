@@ -1765,15 +1765,6 @@ position = Vector2( 293.996, 661.746 )
 scale = Vector2( 5, 5 )
 change_dir_interval = 4.0
 
-[node name="base_ant" parent="hud_ants/Node2D3" index="0"]
-hit_points = null
-change_dir_interval = null
-backpacker_change_dir_interval = null
-pheromone_range = null
-pheromone_cone_size = null
-direction_change_limit = null
-enable_debug_drawing = null
-
 [node name="Node2D4" parent="hud_ants" instance=ExtResource( 2 )]
 position = Vector2( 43.6744, 96.8403 )
 scale = Vector2( 5, 5 )
@@ -1784,15 +1775,6 @@ position = Vector2( 738.19, 559.057 )
 scale = Vector2( 5, 5 )
 change_dir_interval = 3.0
 
-[node name="base_ant" parent="hud_ants/Node2D5" index="0"]
-hit_points = null
-change_dir_interval = null
-backpacker_change_dir_interval = null
-pheromone_range = null
-pheromone_cone_size = null
-direction_change_limit = null
-enable_debug_drawing = null
-
 [node name="Enemy" parent="hud_ants/Node2D5/base_ant" index="4"]
 visible = true
 
@@ -1800,15 +1782,6 @@ visible = true
 position = Vector2( 274.53, 364.226 )
 scale = Vector2( 5, 5 )
 change_dir_interval = 5.0
-
-[node name="base_ant" parent="hud_ants/Node2D6" index="0"]
-hit_points = null
-change_dir_interval = null
-backpacker_change_dir_interval = null
-pheromone_range = null
-pheromone_cone_size = null
-direction_change_limit = null
-enable_debug_drawing = null
 
 [node name="Miner" parent="hud_ants/Node2D6/base_ant" index="3"]
 visible = true

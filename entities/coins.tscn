@@ -74,7 +74,7 @@ total_resources = 500
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 animation = "shine"
-frame = 2
+frame = 7
 playing = true
 
 [node name="core_collision" type="CollisionShape2D" parent="."]
@@ -86,5 +86,3 @@ collision_mask = 32
 
 [node name="gather_shape" type="CollisionShape2D" parent="gatherArea"]
 shape = SubResource( 17 )
-
-[connection signal="area_entered" from="gatherArea" to="." method="_on_gatherArea_area_entered"]
