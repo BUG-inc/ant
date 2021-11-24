@@ -3,6 +3,7 @@ extends "res://entities/entity.gd"
 class_name BaseAnt
 
 export (int) var speed = 200
+export (int) var break_speed = 5
 var _dir = Vector2()
 var velocity = Vector2()
 var pheromone_map: PheromoneMap = null
@@ -19,8 +20,9 @@ enum State {
 	DEAD=2
 	HURTING=3
 	IDLE=4
+	BREAKING=5
 }
-const STATE_NAMES = ["walking", "attacking", "dead", "hurting", "idle"]
+const STATE_NAMES = ["walking", "attacking", "dead", "hurting", "idle", "breaking"]
 var _current_state: int = State.IDLE
 
 func _ready():
@@ -76,6 +78,10 @@ func _physics_process(_delta: float) -> void:
 		return
 	if _current_state == State.WALKING or _current_state == State.HURTING:
 		velocity = move_and_slide(speed * _dir)
+	if _current_state == State.BREAKING:
+		# this will allow the player to rotate in place while breaking
+		velocity = break_speed * _dir
+		move_and_slide(velocity)
 
 func _process(_delta: float) -> void:
 	_update_animation(_dir)
@@ -116,10 +122,15 @@ func _body_left_interaction_field(_body: Node2D):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	#print(anim_name + " " + STATE_NAMES[_current_state])
 	if _current_state == State.ATTACKING:
-		print(len(_bodies_in_interaction_field))
+		# print(len(_bodies_in_interaction_field))
 		if len(_bodies_in_interaction_field) > 0:
 			_bodies_in_interaction_field[0].hit(_dir)
 		set_state(State.IDLE)
+	if _current_state == State.BREAKING:
+		# player ant "breaks" rather than "attacks". This makes controlling the ant less annoying
+		if len(_bodies_in_interaction_field) > 0 and _bodies_in_interaction_field[0].has_method("hit"):
+			_bodies_in_interaction_field[0].hit(_dir)
+		set_state(State.WALKING)
 	elif _current_state == State.HURTING:
 		set_state(State.WALKING)
 	elif _current_state == State.DEAD and anim_name == STATE_NAMES[State.DEAD]:

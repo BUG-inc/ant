@@ -45,9 +45,9 @@ func _handle_pheromone():
 			pheromone_map.remove_pheromone(global_position)
 
 func _handle_action():
-	if Input.is_action_just_pressed("dig_hole"):
+	if Input.is_action_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
-		set_state(State.ATTACKING)
+		set_state(State.BREAKING)
 		if len(_bodies_in_interaction_field) > 0:
 			for body in _bodies_in_interaction_field:
 				if _bodies_in_interaction_field[0].has_method("hit"):
