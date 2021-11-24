@@ -92,14 +92,14 @@ func _process(_delta: float) -> void:
 		set_state(State.WALKING)
 
 func _update_animation(dir: Vector2) -> void:
-	if dir.x > 0:
-		active_sprite.flip_h = false
-
-	if dir.x < 0:
-		active_sprite.flip_h = true
-
-	if !is_equal_approx(velocity.length(), 0):
-		rotation = atan2(velocity.y, velocity.x) + PI/2
+	if _current_state == State.ATTACKING:
+		rotation = atan2(_dir.y, _dir.x) + PI/2
+	else:
+		active_sprite.flip_h = dir.x > 0
+		active_sprite.flip_h = dir.x < 0
+		if !is_equal_approx(velocity.length(), 0):
+			rotation = atan2(velocity.y, velocity.x) + PI/2
+		
 	if _current_state != State.DEAD or not _death_animation_finished:
 		$AnimationPlayer.play(STATE_NAMES[_current_state])
 	
