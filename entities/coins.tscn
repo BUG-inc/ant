@@ -68,13 +68,14 @@ radius = 5.09902
 radius = 19.0263
 
 [node name="coins" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource( 3 )
-total_resources = 500
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 animation = "shine"
-frame = 7
+frame = 1
 playing = true
 
 [node name="core_collision" type="CollisionShape2D" parent="."]

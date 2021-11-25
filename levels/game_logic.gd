@@ -15,7 +15,7 @@ func set_player_mode(val: bool):
 
 func _ready():
 	set_player_mode(true)
-
+	_update_ant_no()
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause_menu") && !get_tree().paused:
@@ -41,24 +41,18 @@ func hide_menu():
 	get_tree().paused = false
 
 		
-func _physics_process(_delta: float) -> void:
-	if not _player_mode:
-		_management_gui()
-
-
-func _management_gui():
-	if $HUD:
-		var ants = get_tree().get_nodes_in_group("ants")
-		var num_ants = len(ants)
-		$HUD/AntNo.text = str(num_ants)
+func _update_ant_no():
+	var ants = get_tree().get_nodes_in_group("ants")
+	var num_ants = len(ants)
+	$HUD/AntNo.text = str(num_ants)
 
 
 func _management_loop(_delta):
-	if Input.is_action_pressed("spawn"):
+	if OS.is_debug_build() && Input.is_action_pressed("spawn"):
 		var pos = get_local_mouse_position()
 		$AntMaster.spawn_npc_ant(pos)
 
-	if Input.is_action_just_pressed("kill"):
+	if OS.is_debug_build() && Input.is_action_just_pressed("kill"):
 		$AntMaster.killall()
 		$Level.position = Vector2()
 
@@ -74,3 +68,11 @@ func _on_player_dig_hole(position):
 func _on_main_menu_Button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene("res://main.tscn")
+
+
+func _on_AntMaster_ant_spawn() -> void:
+	_update_ant_no()
+
+
+func _on_AntMaster_ant_dead() -> void:
+	_update_ant_no()

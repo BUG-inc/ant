@@ -136,5 +136,5 @@ func _body_entered_interaction_field(body):
 	):
 		if not body.is_dead():
 			set_state(State.ATTACKING)
-			print("Set attacking")
+			# print("Set attacking")
 		

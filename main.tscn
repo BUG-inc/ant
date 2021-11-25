@@ -17,7 +17,7 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=187]
 size = 14
-outline_size = 1
+outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
@@ -1672,6 +1672,16 @@ show_behind_parent = true
 [node name="lore" type="Node2D" parent="."]
 visible = false
 position = Vector2( 500, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="lore"]
+margin_left = -364.0
+margin_top = 2.0
+margin_right = 386.0
+margin_bottom = 721.0
+color = Color( 1, 1, 1, 0.568627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="lore"]
 anchor_left = 0.5

@@ -2,6 +2,8 @@ extends Node2D
 class_name AntMaster
 
 var _npc_ant = preload("res://entities/npc_ant.tscn")
+signal ant_spawn
+signal ant_dead
 
 func _ready():
 	var queen: Queen = get_node_or_null("Queen")
@@ -34,6 +36,8 @@ func _create_ant():
 		new_ant.set_queen($Queen)
 	new_ant.add_to_group("ants")
 	add_child(new_ant)
+	emit_signal("ant_spawn")
+	new_ant.get_node("base_ant").connect("ant_dead", self, "_on_ant_dead")
 	return new_ant
 
 func _on_queen_birthing(position: Vector2):
@@ -41,3 +45,6 @@ func _on_queen_birthing(position: Vector2):
 	print("Spawning ant in :", position)
 	var new_ant = _create_ant()
 	new_ant.position = position
+
+func _on_ant_dead():
+	emit_signal("ant_dead")

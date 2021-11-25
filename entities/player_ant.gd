@@ -35,7 +35,7 @@ func _handle_pheromone():
 	if pheromone_map == null:
 		return
 
-	if Input.is_action_just_pressed("pheromone_toggle_key"):
+	if OS.is_debug_build() && Input.is_action_just_pressed("pheromone_toggle_key"):
 		_toggle_pheromone_mode()
 
 	if Input.is_action_pressed("pheromone_action_key"):

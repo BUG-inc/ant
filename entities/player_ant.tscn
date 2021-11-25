@@ -12,6 +12,7 @@ script = ExtResource( 3 )
 [node name="base_ant" parent="." groups=["player"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 speed = 75
+break_speed = 10
 tool_point = Vector2( 0, -25 )
 
 [node name="interaction_field" parent="base_ant" index="1"]

@@ -13,6 +13,7 @@ export (int) var hit_points = 3
 var _death_animation_finished: bool = false
 
 var _bodies_in_interaction_field = []
+signal ant_dead
 
 enum State {
 	WALKING=0
@@ -68,8 +69,9 @@ func hit(direction: Vector2):
 			set_state(State.HURTING)
 		
 func die():
-	print("Ant die!")
+	# print("Ant die!")
 	rotation = 0.0 # PI/2.0
+	emit_signal("ant_dead")
 	set_state(State.DEAD)
 
 func _physics_process(_delta: float) -> void:
