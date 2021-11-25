@@ -128,13 +128,15 @@ func _on_interaction_field_area_entered(area):
 				_limit_direction_flip = false
 
 func is_enemy(body):
-	return (
-		not body.is_dead() and 
-		(
-			body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
-			(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
+	if body.has_method("is_dead"):
+		return (
+			not body.is_dead() and 
+			(
+				body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
+				(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
+			)
 		)
-	)
+	return false
 
 func _body_entered_interaction_field(body):
 	if _current_state != State.WALKING and _current_state != State.IDLE:
