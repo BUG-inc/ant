@@ -14,6 +14,7 @@ var _time_since_change := 0.0
 var _sensed_pheromones: Array = []
 var _resource_load: Dictionary = {'type': null, 'number': 0}
 var _limit_direction_flip: bool = false
+var _enemy_target: BaseAnt = null
 
 func _ready():
 	_dir = _change_dir()
@@ -37,9 +38,8 @@ func _physics_process(delta: float) -> void:
 		_dir = _change_dir()
 		set_state(State.WALKING)
 	elif _current_state == State.ATTACKING:
-		if len(_bodies_in_interaction_field) > 0:
-			var relative_pos: Vector2 = _bodies_in_interaction_field[0].get_global_position() - get_global_position()
-			_dir = relative_pos.normalized()
+		var relative_pos: Vector2 = _enemy_target.get_global_position() - get_global_position()
+		_dir = relative_pos.normalized()
 	if enable_debug_drawing:
 		update()
 	
@@ -127,14 +127,29 @@ func _on_interaction_field_area_entered(area):
 				_dir = -_dir
 				_limit_direction_flip = false
 
+func is_enemy(body):
+	return (
+		not body.is_dead() and 
+		(
+			body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
+			(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
+		)
+	)
+
 func _body_entered_interaction_field(body):
 	if _current_state != State.WALKING and _current_state != State.IDLE:
 		return
-	if (
-		body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
-		(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
-	):
-		if not body.is_dead():
+	if (is_enemy(body)):
+		if _enemy_target == null:
+			_enemy_target = body
 			set_state(State.ATTACKING)
-			# print("Set attacking")
 		
+func _body_left_interaction_field(body):
+	if body == _enemy_target:
+		_enemy_target = null
+		for other_body in _bodies_in_interaction_field:
+			if is_enemy(other_body):
+				_enemy_target = other_body
+				break
+	if _current_state == State.ATTACKING and _enemy_target == null:
+		set_state(State.WALKING)
