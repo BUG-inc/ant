@@ -1,6 +1,5 @@
 extends "res://entities/base_ant.gd"
 
-
 export (float) var change_dir_interval = 1.0
 export (float) var backpacker_change_dir_interval = 0.1
 export (int) var pheromone_range = 2
@@ -14,7 +13,6 @@ var _time_since_change := 0.0
 var _sensed_pheromones: Array = []
 var _resource_load: Dictionary = {'type': null, 'number': 0}
 var _limit_direction_flip: bool = false
-var _enemy_target: BaseAnt = null
 
 func _ready():
 	_dir = _change_dir()
@@ -127,31 +125,12 @@ func _on_interaction_field_area_entered(area):
 				_dir = -_dir
 				_limit_direction_flip = false
 
-func is_enemy(body):
-	if body.has_method("is_dead"):
-		return (
-			not body.is_dead() and 
-			(
-				body.is_in_group("enemy_npc_ants") and self.is_in_group("npc_ants") or
-				(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
-			)
-		)
-	return false
-
 func _body_entered_interaction_field(body):
 	if _current_state != State.WALKING and _current_state != State.IDLE:
 		return
-	if (is_enemy(body)):
-		if _enemy_target == null:
-			_enemy_target = body
-			set_state(State.ATTACKING)
+	if is_enemy(body) and _current_state != State.ATTACKING and _resource_load["number"] == 0:
+		set_state(State.ATTACKING)
 		
 func _body_left_interaction_field(body):
-	if body == _enemy_target:
-		_enemy_target = null
-		for other_body in _bodies_in_interaction_field:
-			if is_enemy(other_body):
-				_enemy_target = other_body
-				break
 	if _current_state == State.ATTACKING and _enemy_target == null:
 		set_state(State.WALKING)

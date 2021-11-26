@@ -48,11 +48,6 @@ func _handle_action():
 	if Input.is_action_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
 		set_state(State.BREAKING)
-		if len(_bodies_in_interaction_field) > 0:
-			for body in _bodies_in_interaction_field:
-				if _bodies_in_interaction_field[0].has_method("hit"):
-					_bodies_in_interaction_field[0].hit(_dir)
-					break
 
 func _toggle_pheromone_mode():
 	var temp = _is_laying

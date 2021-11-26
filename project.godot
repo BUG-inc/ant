@@ -38,9 +38,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ant Manager - The Ant Colony Simulator!"
+config/name="EntityExperiment"
 run/main_scene="res://main.tscn"
-config/icon="res://assets/sprites/ui/icon_clean.png"
+config/icon="res://assets/icon.png"
 
 [debug]
 

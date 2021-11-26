@@ -13,6 +13,7 @@ export (int) var hit_points = 3
 var _death_animation_finished: bool = false
 
 var _bodies_in_interaction_field = []
+var _enemy_target: BaseAnt = null
 signal ant_dead
 
 enum State {
@@ -73,6 +74,17 @@ func die():
 	rotation = 0.0 # PI/2.0
 	emit_signal("ant_dead")
 	set_state(State.DEAD)
+	
+func is_enemy(body):
+	if body.has_method("is_dead"):
+		return (
+			not body.is_dead() and 
+			(
+				body.is_in_group("enemy_npc_ants") and (self.is_in_group("npc_ants") or self.is_in_group("player")) or
+				(body.is_in_group("npc_ants") or body.is_in_group("player")) and self.is_in_group("enemy_npc_ants")
+			)
+		)
+	return false
 
 func _physics_process(_delta: float) -> void:
 	if _current_state == State.DEAD:
@@ -107,10 +119,18 @@ func _update_animation(dir: Vector2) -> void:
 	
 func _on_interaction_field_body_entered(body):
 	_bodies_in_interaction_field.append(body)
+	if is_enemy(body) and _enemy_target == null:
+		_enemy_target = body
 	_body_entered_interaction_field(body)
 
 func _on_interaction_field_body_exited(body):
 	_bodies_in_interaction_field.erase(body)
+	if body == _enemy_target:
+		_enemy_target = null
+		for other_body in _bodies_in_interaction_field:
+			if is_enemy(other_body):
+				_enemy_target = other_body
+				break
 	_body_left_interaction_field(body)
 	
 func _body_entered_interaction_field(_body: Node2D):
@@ -125,13 +145,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	#print(anim_name + " " + STATE_NAMES[_current_state])
 	if _current_state == State.ATTACKING:
 		# print(len(_bodies_in_interaction_field))
-		if len(_bodies_in_interaction_field) > 0:
-			_bodies_in_interaction_field[0].hit(_dir)
+		if _enemy_target != null and _enemy_target.has_method("hit"):
+			_enemy_target.hit(_dir)
 		set_state(State.IDLE)
 	if _current_state == State.BREAKING:
 		# player ant "breaks" rather than "attacks". This makes controlling the ant less annoying
-		if len(_bodies_in_interaction_field) > 0 and _bodies_in_interaction_field[0].has_method("hit"):
-			_bodies_in_interaction_field[0].hit(_dir)
+		if _enemy_target != null and _enemy_target.has_method("hit"):
+			_enemy_target.hit(_dir)
 		set_state(State.WALKING)
 	elif _current_state == State.HURTING:
 		set_state(State.WALKING)
