@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://entities/coins.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/camera.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://overlays/pause_menu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://entities/enemy_npc_ant.tscn" type="PackedScene" id=15]
 [ext_resource path="res://entities/npc_ant.tscn" type="PackedScene" id=16]
+[ext_resource path="res://entities/todeskaefer.tscn" type="PackedScene" id=17]
 
 [sub_resource type="TileSet" id=175]
 resource_local_to_scene = true
@@ -2972,6 +2973,9 @@ position = Vector2( 1274.45, 813.877 )
 
 [node name="enemy_npc_ant61" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 424.61, 510.778 )
+
+[node name="Todeskaefer" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1159, 113 )
 
 [connection signal="ant_dead" from="AntMaster" to="." method="_on_AntMaster_ant_dead"]
 [connection signal="ant_spawn" from="AntMaster" to="." method="_on_AntMaster_ant_spawn"]
