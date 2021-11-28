@@ -3,7 +3,7 @@ extends Node2D
 export var _player_mode = true
 onready var _player = $AntMaster/player
 onready var _camera = $camera
-
+var _num_ants: int = 0
 
 func set_player_mode(val: bool):
 	if _player:
@@ -15,7 +15,7 @@ func set_player_mode(val: bool):
 
 func _ready():
 	set_player_mode(true)
-	_update_ant_no()
+	_init_ant_no()
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause_menu") && !get_tree().paused:
@@ -46,10 +46,10 @@ func hide_menu():
 	get_tree().paused = false
 
 		
-func _update_ant_no():
+func _init_ant_no():
 	var ants = get_tree().get_nodes_in_group("ants")
-	var num_ants = len(ants)
-	$HUD/AntNo.text = str(num_ants)
+	_num_ants = len(ants)
+	$HUD/AntNo.text = str(_num_ants)
 
 
 func _management_loop(_delta):
@@ -76,8 +76,9 @@ func _on_main_menu_Button_pressed() -> void:
 
 
 func _on_AntMaster_ant_spawn() -> void:
-	_update_ant_no()
-
+	_num_ants += 1
+	$HUD/AntNo.text = str(_num_ants)
 
 func _on_AntMaster_ant_dead() -> void:
-	_update_ant_no()
+	_num_ants -= 1
+	$HUD/AntNo.text = str(_num_ants)

@@ -70,7 +70,6 @@ func hit(direction: Vector2):
 			set_state(State.HURTING)
 		
 func die():
-	# print("Ant die!")
 	rotation = 0.0 # PI/2.0
 	emit_signal("ant_dead")
 	set_state(State.DEAD)
