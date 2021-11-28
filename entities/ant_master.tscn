@@ -9,3 +9,4 @@ script = ExtResource( 1 )
 [node name="PheromoneMap" parent="." instance=ExtResource( 2 )]
 width = 1000
 height = 1000
+pheromone_cleaning_radius = 0
