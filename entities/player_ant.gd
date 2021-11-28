@@ -2,6 +2,9 @@ extends "res://entities/base_ant.gd"
 
 export (Vector2) var tool_point = Vector2(40.0, 0.0)
 signal dig_hole_signal(position)
+signal adding_pheromone
+signal removing_pheromone
+signal no_pheromone
 
 var _is_control = true
 var _is_laying = true
@@ -35,30 +38,21 @@ func _handle_pheromone():
 	if pheromone_map == null:
 		return
 
-	if Input.is_action_just_pressed("pheromone_toggle_key"):
-		_toggle_pheromone_mode()
+	if Input.is_action_pressed("pheromone_laying"):
+		pheromone_map.add_pheromone(global_position)
+		emit_signal("adding_pheromone")
+	elif Input.is_action_pressed("pheromone_removing"):
+		pheromone_map.remove_pheromone(global_position)
+		emit_signal("removing_pheromone")
+	else:
+		emit_signal("no_pheromone")
 
-	if Input.is_action_pressed("pheromone_action_key"):
-		if _is_laying:
-			pheromone_map.add_pheromone(global_position)
-		elif _is_removing:
-			pheromone_map.remove_pheromone(global_position)
 
 func _handle_action():
 	if Input.is_action_pressed("dig_hole"):
 		emit_signal("dig_hole_signal", to_global(tool_point))
 		set_state(State.BREAKING)
 
-func _toggle_pheromone_mode():
-	var temp = _is_laying
-	_is_laying = _is_removing
-	_is_removing = temp
-	if _is_laying:
-		$player_hud/GridContainer/pheromone_val.text = "Laying"
-	else:
-		$player_hud/GridContainer/pheromone_val.text = "Removing"
-
-		
 func _handle_movement():
 	_dir = Vector2()
 	if Input.is_action_pressed("ui_left"):

@@ -65,7 +65,7 @@ animations = [ {
 radius = 5.09902
 
 [sub_resource type="CircleShape2D" id=17]
-radius = 19.0263
+radius = 10.5395
 
 [node name="coins" type="StaticBody2D"]
 collision_layer = 8
@@ -75,7 +75,6 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 animation = "shine"
-frame = 1
 playing = true
 
 [node name="core_collision" type="CollisionShape2D" parent="."]

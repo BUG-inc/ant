@@ -6,6 +6,7 @@
 [ext_resource path="res://entities/npc_ant_controller.gd" type="Script" id=4]
 
 [node name="enemy_npc_ant" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 2 )
 
 [node name="base_ant" parent="." groups=["enemy_npc_ants"] instance=ExtResource( 1 )]

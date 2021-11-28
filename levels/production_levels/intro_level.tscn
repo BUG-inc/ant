@@ -2661,6 +2661,7 @@ position = Vector2( 63.3114, 491.587 )
 
 [node name="Queen" parent="AntMaster" instance=ExtResource( 4 )]
 position = Vector2( 59.3039, 462.444 )
+ant_birth_cost = 5
 init_coins = 20
 
 [node name="npc_ant" parent="AntMaster" groups=["ants"] instance=ExtResource( 16 )]

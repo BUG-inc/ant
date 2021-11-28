@@ -29,5 +29,5 @@ func collect():
 		return 1
 
 func _shrink():
-	scale.x = resource_size_scale * (total_resources / max_resources) + scale_offset
-	scale.y = resource_size_scale * (total_resources / max_resources) + scale_offset
+	$AnimatedSprite.scale.x = resource_size_scale * (total_resources / max_resources) + scale_offset
+	$AnimatedSprite.scale.y = resource_size_scale * (total_resources / max_resources) + scale_offset

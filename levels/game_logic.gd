@@ -33,11 +33,16 @@ func _process(delta):
 func show_menu():
 	"""Display the pause menu."""	
 	$pause_menu.get_child(0).show()  # https://godotengine.org/qa/55202/how-to-hide-a-canvas-layer-node
+	for node in $HUD.get_children():
+		node.hide()
+	$AntMaster/player/base_ant/player_hud/Help.hide()
 	get_tree().paused = true
 
 func hide_menu():
 	"""Hide the pause menu."""	
 	$pause_menu.get_child(0).hide()  # https://godotengine.org/qa/55202/how-to-hide-a-canvas-layer-node
+	for node in $HUD.get_children():
+		node.show()
 	get_tree().paused = false
 
 		

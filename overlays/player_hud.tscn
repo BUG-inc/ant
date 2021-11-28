@@ -1,44 +1,199 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/Font/OpenSans-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/ui/icon_pheromones.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/ui/icon_clean.png" type="Texture" id=2]
+[ext_resource path="res://assets/Font/OpenSans-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://overlays/player_hud.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 30
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 15
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 15
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 15
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
 [node name="player_hud" type="CanvasLayer"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 719.183 ],
+"_edit_vertical_guides_": [ 1026.67 ]
+}
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -92.0
 margin_top = 215.5
-margin_right = 92.0
+margin_right = 184.0
 margin_bottom = 294.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pheromone mode" type="Label" parent="GridContainer"]
-margin_right = 184.0
-margin_bottom = 28.0
-custom_fonts/font = SubResource( 1 )
-text = "Pheromone mode:"
+[node name="Laying" type="Node2D" parent="GridContainer"]
+visible = false
 
-[node name="pheromone_val" type="Label" parent="GridContainer"]
-margin_top = 32.0
-margin_right = 184.0
-margin_bottom = 74.0
-custom_fonts/font = SubResource( 2 )
-text = "Laying"
+[node name="Sprite" type="Sprite" parent="GridContainer/Laying"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="GridContainer/Laying"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -140.5
+margin_top = 61.0
+margin_right = 140.5
+margin_bottom = 103.0
+custom_fonts/font = SubResource( 1 )
+text = "Laying Pheromone"
 align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Removing" type="Node2D" parent="GridContainer"]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="GridContainer/Removing"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="GridContainer/Removing"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -165.5
+margin_top = 61.0
+margin_right = 165.5
+margin_bottom = 103.0
+custom_fonts/font = SubResource( 1 )
+text = "Removing Pheromone"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Node2D" parent="."]
+
+[node name="RichTextLabel" type="Label" parent="Help"]
+margin_left = 692.0
+margin_top = 481.0
+margin_right = 945.0
+margin_bottom = 697.0
+custom_fonts/font = SubResource( 2 )
+text = "Lay down pheromone: 
+Remove pheromone:
+Toggle map view:
+Break Ground:
+Pause game:
+Toggle this help message:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lay" type="Label" parent="Help"]
+margin_left = 953.0
+margin_top = 486.0
+margin_right = 1016.0
+margin_bottom = 508.0
+custom_fonts/font = SubResource( 3 )
+text = "Space"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remove" type="Label" parent="Help"]
+margin_left = 951.24
+margin_top = 516.946
+margin_right = 1021.24
+margin_bottom = 538.946
+custom_fonts/font = SubResource( 5 )
+text = "Left Shift"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToggleMap" type="Label" parent="Help"]
+margin_left = 958.131
+margin_top = 549.345
+margin_right = 1014.13
+margin_bottom = 571.345
+custom_fonts/font = SubResource( 4 )
+text = "Tab"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToggleHelp" type="Label" parent="Help"]
+margin_left = 958.695
+margin_top = 641.436
+margin_right = 1014.69
+margin_bottom = 663.436
+custom_fonts/font = SubResource( 6 )
+text = "Q"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="Label" parent="Help"]
+margin_left = 958.695
+margin_top = 611.436
+margin_right = 1014.69
+margin_bottom = 633.436
+custom_fonts/font = SubResource( 6 )
+text = "Q"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Break" type="Label" parent="Help"]
+margin_left = 958.695
+margin_top = 579.436
+margin_right = 1014.69
+margin_bottom = 601.436
+custom_fonts/font = SubResource( 6 )
+text = "Q"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

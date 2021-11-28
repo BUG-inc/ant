@@ -34,6 +34,9 @@ drag_margin_v_enabled = true
 
 [node name="player_hud" parent="base_ant" instance=ExtResource( 4 )]
 
+[connection signal="adding_pheromone" from="base_ant" to="base_ant/player_hud" method="_on_base_ant_adding_pheromone"]
 [connection signal="dig_hole_signal" from="base_ant" to="." method="_on_base_ant_dig_hole_signal"]
+[connection signal="no_pheromone" from="base_ant" to="base_ant/player_hud" method="_on_base_ant_no_pheromone"]
+[connection signal="removing_pheromone" from="base_ant" to="base_ant/player_hud" method="_on_base_ant_removing_pheromone"]
 
 [editable path="base_ant"]

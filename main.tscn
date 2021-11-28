@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sprites/background/ant_backgroun_tilemap.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/foreground/ant_foreground_v4_eigen.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/background/dirt_bg_1.png" type="Texture" id=8]
+[ext_resource path="res://entities/todeskaefer.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=186]
 size = 60
@@ -17,12 +18,6 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=187]
 size = 14
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=188]
-size = 15
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -1701,9 +1696,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -357.5
-margin_top = 94.0
+margin_top = 188.0
 margin_right = 362.5
-margin_bottom = 436.0
+margin_bottom = 530.0
 custom_fonts/font = SubResource( 187 )
 text = "Ant manager is an ant colony simulator. 
 
@@ -1722,28 +1717,6 @@ Remember! It is your duty to provide the queen with valuable resources. She will
 brothers and sisters to expand the colony!"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="controls" type="Label" parent="lore/Title"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -243.248
-margin_top = 372.515
-margin_right = 267.752
-margin_bottom = 544.515
-custom_fonts/font = SubResource( 188 )
-text = "Control your ant with the directional keys or WSAD.
-
-Switch between direct ant control or colony view with the TAB key.
-
-You can lay down/remove pheromone by pressing SPACE.
-
-Toggle between laying or removing pheromone by pressing E."
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1795,6 +1768,10 @@ change_dir_interval = 5.0
 
 [node name="Miner" parent="hud_ants/Node2D6/base_ant" index="3"]
 visible = true
+
+[node name="Todeskaefer" parent="hud_ants" instance=ExtResource( 9 )]
+position = Vector2( 139.185, 552.251 )
+scale = Vector2( 5, 5 )
 
 [node name="menu_level" type="Node2D" parent="."]
 

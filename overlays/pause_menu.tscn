@@ -1,19 +1,50 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/Font/bold_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Font/OpenSans-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
 
 [node name="pause_menu" type="CanvasLayer"]
 pause_mode = 2
 
-[node name="menu" type="Node2D" parent="."]
+[node name="menu" type="GridContainer" parent="."]
 pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -151.5
+margin_top = -360.0
+margin_right = 151.5
+margin_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="menu"]
+margin_left = 35.0
+margin_right = 268.0
+margin_bottom = 83.0
+size_flags_horizontal = 6
+custom_fonts/font = SubResource( 1 )
+text = "Paused!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button" type="Button" parent="menu"]
 pause_mode = 2
-margin_left = 346.234
-margin_top = 242.562
-margin_right = 649.234
-margin_bottom = 290.562
+margin_top = 379.0
+margin_right = 303.0
+margin_bottom = 427.0
+size_flags_vertical = 6
 custom_fonts/font = ExtResource( 1 )
 text = "Back to main menu"
 __meta__ = {
