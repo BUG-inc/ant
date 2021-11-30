@@ -21,3 +21,16 @@ func _on_lore_Button_pressed() -> void:
 	$hud_ants.hide()
 	$menu_level/Foreground.hide()
 	$lore.show()
+
+
+func _on_credits_Button_pressed() -> void:
+	$menu.hide()
+	$hud_ants.hide()
+	$menu_level/Foreground.hide()
+	$credits.show()
+
+func _on_credits_back_Button_pressed() -> void:
+	$credits.hide()
+	$menu.show()
+	$menu_level/Foreground.show()
+	$hud_ants.show()

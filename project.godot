@@ -38,9 +38,20 @@ _global_script_class_icons={
 
 [application]
 
-config/name="EntityExperiment"
+config/name="AntManager"
+config/description="A program to simulate an ant colony and their affairs. As the taskmaster, your role is to break ground to locate resources for your colony! Deploy a pheromone trail to let your fellow ant workers which paths to take, as they retrieve resources to the needy queen. More resources mean more ants, which means more resources to the colony. 
+
+Be wary of other ant colonies and of the fearsome Todeskäfer!
+
+Here's a short haiku about how the simulation works:
+
+    Joyful ants stroll through the tunnels.
+    They hope to find coin to bring home.
+    Autumn will end soon.
+    The Beetle has awaken."
 run/main_scene="res://main.tscn"
-config/icon="res://assets/icon.png"
+config/icon="res://assets/sprites/ui/icon_clean.png"
+config/windows_native_icon="res://assets/game_icon.ico"
 
 [debug]
 
