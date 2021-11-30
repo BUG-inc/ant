@@ -9,7 +9,7 @@ export var cell_height = 10
 export var cell_width = 10
 export var PHEROMONE_INCREMENT = 0.1
 export var debug_mode = false
-export var pheromone_cleaning_radius = 2  # radius for cleaning pheromones in a grid (e.g.: if 2, cleans in a 2x2 square)
+export var pheromone_cleaning_radius = 1  # radius for cleaning pheromones in a grid (e.g.: if 2, cleans in a 2x2 square)
 # each cell stores pheromones
 var cells = []
 var nonzero_cells = []
@@ -63,7 +63,7 @@ func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 0.5)
 		if not pheromones.has(cell_index):
 			var new_particles = _pheromone.instance()
-			new_particles.position = position
+			new_particles.position = get_cell_position(cell_index[0], cell_index[1])
 			pheromones[cell_index] = new_particles
 			add_child(new_particles)
 		#update()
@@ -71,8 +71,8 @@ func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
 func remove_pheromone(position: Vector2):
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
-		for i in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
-			for j in range(-pheromone_cleaning_radius, pheromone_cleaning_radius):
+		for i in range(-pheromone_cleaning_radius, pheromone_cleaning_radius + 1):
+			for j in range(-pheromone_cleaning_radius, pheromone_cleaning_radius + 1):
 				var y_index: int = cell_index[0] + i
 				var x_index: int = cell_index[1] + j 
 				cells[y_index][x_index] = 0.0

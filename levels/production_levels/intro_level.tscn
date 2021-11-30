@@ -118,6 +118,14 @@ total_resources = 100.0
 position = Vector2( 1072.26, 68.2646 )
 total_resources = 100.0
 
+[node name="coins27" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 1120, 905 )
+total_resources = 100.0
+
+[node name="coins28" parent="Items" instance=ExtResource( 1 )]
+position = Vector2( 1256, 913 )
+total_resources = 100.0
+
 [node name="coins16" parent="Items" instance=ExtResource( 1 )]
 position = Vector2( 956.401, 105.895 )
 total_resources = 100.0
@@ -235,7 +243,7 @@ position = Vector2( 1174.5, 897.202 )
 position = Vector2( 1194.66, 900.031 )
 
 [node name="enemy_npc_ant23" parent="EnemyAntMaster" instance=ExtResource( 15 )]
-position = Vector2( 1047.83, 914.293 )
+position = Vector2( 228, 659 )
 
 [node name="enemy_npc_ant24" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 1219.3, 964.144 )
@@ -259,10 +267,10 @@ position = Vector2( 1222.46, 811.975 )
 position = Vector2( 1278.7, 819.54 )
 
 [node name="enemy_npc_ant31" parent="EnemyAntMaster" instance=ExtResource( 15 )]
-position = Vector2( 978.883, 894.841 )
+position = Vector2( 251, 665 )
 
 [node name="enemy_npc_ant32" parent="EnemyAntMaster" instance=ExtResource( 15 )]
-position = Vector2( 999.036, 897.669 )
+position = Vector2( 278, 622 )
 
 [node name="enemy_npc_ant33" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 942.821, 910.044 )
@@ -277,10 +285,28 @@ position = Vector2( 1147.88, 947.167 )
 position = Vector2( 1212.04, 909.476 )
 
 [node name="enemy_npc_ant37" parent="EnemyAntMaster" instance=ExtResource( 15 )]
-position = Vector2( 1176.98, 891.539 )
+position = Vector2( 249, 597 )
 
 [node name="enemy_npc_ant38" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 1213.73, 743.455 )
+
+[node name="enemy_npc_ant69" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 1189, 778 )
+
+[node name="enemy_npc_ant70" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 1214, 703 )
+
+[node name="enemy_npc_ant71" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 1213, 671 )
+
+[node name="enemy_npc_ant72" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 1200, 635 )
+
+[node name="enemy_npc_ant73" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 1161, 598 )
+
+[node name="enemy_npc_ant74" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 1193, 593 )
 
 [node name="enemy_npc_ant39" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 1201.62, 955.652 )
@@ -304,7 +330,7 @@ position = Vector2( 1204.78, 803.483 )
 position = Vector2( 1238.37, 790.755 )
 
 [node name="enemy_npc_ant46" parent="EnemyAntMaster" instance=ExtResource( 15 )]
-position = Vector2( 992.318, 897.669 )
+position = Vector2( 194, 630 )
 
 [node name="enemy_npc_ant47" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 1196.05, 738.152 )
@@ -340,7 +366,28 @@ position = Vector2( 1226.55, 858.534 )
 position = Vector2( 1246.7, 861.362 )
 
 [node name="enemy_npc_ant58" parent="EnemyAntMaster" instance=ExtResource( 15 )]
-position = Vector2( 1151.79, 846.836 )
+position = Vector2( 87, 690 )
+
+[node name="enemy_npc_ant62" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 60, 697 )
+
+[node name="enemy_npc_ant63" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 69, 766 )
+
+[node name="enemy_npc_ant64" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 82, 790 )
+
+[node name="enemy_npc_ant65" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 347, 861 )
+
+[node name="enemy_npc_ant68" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 343, 918 )
+
+[node name="enemy_npc_ant66" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 392, 859 )
+
+[node name="enemy_npc_ant67" parent="EnemyAntMaster" instance=ExtResource( 15 )]
+position = Vector2( 442, 860 )
 
 [node name="enemy_npc_ant59" parent="EnemyAntMaster" instance=ExtResource( 15 )]
 position = Vector2( 1218.21, 806.312 )
