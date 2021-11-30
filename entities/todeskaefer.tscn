@@ -102,7 +102,7 @@ height = 14.0
 [node name="Todeskaefer" type="KinematicBody2D"]
 pause_mode = 1
 collision_layer = 16
-collision_mask = 12
+collision_mask = 15
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -124,8 +124,8 @@ collision_layer = 0
 collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BiteArea"]
-position = Vector2( -0.351671, 0 )
-scale = Vector2( 1.70334, 1 )
+position = Vector2( -0.351671, 2.73302 )
+scale = Vector2( 1.70334, 1.29387 )
 polygon = PoolVector2Array( -5, -12, -9, -21, 10, -21, 6, -12 )
 
 [node name="SenseArea" type="Area2D" parent="."]
