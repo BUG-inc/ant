@@ -23,8 +23,9 @@ enum State {
 	HURTING=3
 	IDLE=4
 	BREAKING=5
+	RESOURCE_WALKING=6
 }
-const STATE_NAMES = ["walking", "attacking", "dead", "hurting", "idle", "breaking"]
+const STATE_NAMES = ["walking", "attacking", "dead", "hurting", "idle", "breaking", "resource_walking"]
 var _current_state: int = State.IDLE
 
 func _ready():
@@ -89,7 +90,7 @@ func _physics_process(_delta: float) -> void:
 	if _current_state == State.DEAD:
 		velocity = Vector2(0, 0)
 		return
-	if _current_state == State.WALKING or _current_state == State.HURTING:
+	if _current_state in [State.WALKING, State.HURTING, State.RESOURCE_WALKING]:
 		velocity = move_and_slide(speed * _dir)
 	if _current_state == State.BREAKING:
 		# this will allow the player to rotate in place while breaking

@@ -16,7 +16,7 @@ signal birthing(position)
 func _ready():
 	reset_resources()
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	check_can_birth()
 
 func deliver_resource(type: String, number: int):
@@ -35,6 +35,7 @@ func reset_resources():
 	resources = {"coins": init_coins}
 	for resource in resources:
 		emit_signal("resource_update", resource, resources[resource])
+	globals.queen_pos = global_position
 
 func birthing():
 	var birth_ant = _ant_birth.instance()

@@ -21,7 +21,7 @@ func set_change_dir_interval(val: float):
 	_change_dir_interval = val
 	
 func _physics_process(delta: float) -> void:
-	if _current_state == State.WALKING:
+	if _current_state in [State.WALKING, State.RESOURCE_WALKING]:
 		_time_since_change += delta
 		if _time_since_change > _change_dir_interval:
 			_time_since_change = 0.0
@@ -53,22 +53,27 @@ func _max(values: Array) -> float:
 		max_val = max(v, max_val)
 	return max_val
 
-func _weighted_sampling(values: Array) -> int:
+func _weighted_sampling(visible_pheromones: Dictionary) -> Vector2:
 	"""
-	Randomly sample an index of the given array, where the probability of an
-	index i being sampled is p(i)~values[i].
+		Samples a direction for the ant to follow.
+
+		If the ant is carrying a resource, pick the direction that points towards the queen. Otherwise, randomly choose
+		a pheromone direction, and draw a direction from a normal centred on the pheromone dir.
 	"""
 	var p = randf()
+	var values = visible_pheromones['values']
 	var normalizer = _sum(values)
+	var chosen_dir_idx = len(values) - 1
+	
 	if normalizer == 0.0:
-		return randi() % len(values)
+		chosen_dir_idx = randi() % len(values)
 	var acc = 0.0
 	for i in range(len(values)):
 		acc += 1.0 / normalizer *  values[i]
 		if p <= acc:
-			return i
-	# this shouldn't happen
-	return len(values) - 1
+			chosen_dir_idx = i
+			break
+	return visible_pheromones['directions'][chosen_dir_idx]
 	
 func _sample_random_dir() -> Vector2:
 	return Vector2(1.0, 0.0).rotated(_gen.randf_range(0.0, 2.0 * PI)) 
@@ -87,7 +92,7 @@ func _follow_pheromone() -> Vector2:
 			var visible_pheromones = get_pheromones_in_cone(values, positions)
 			if len(visible_pheromones['values']) == 0 or _max(visible_pheromones['values']) == 0.0:
 				return _sample_random_dir()
-			return visible_pheromones['directions'][_weighted_sampling(visible_pheromones['values'])]
+			return _weighted_sampling(visible_pheromones)
 	return _sample_random_dir()
 
 func get_pheromones_in_cone(values: Array, positions: Array) -> Dictionary:
@@ -119,6 +124,7 @@ func _on_interaction_field_area_entered(area):
 				_resource_load['number'] += collected
 				_resource_load['type'] = area.get_meta('resource_type')		# switch between resource type
 				set_animation_style("Miner")
+				_current_state = State.RESOURCE_WALKING
 				set_change_dir_interval(backpacker_change_dir_interval)
 				_dir = -_dir
 				_limit_direction_flip = true
@@ -129,6 +135,7 @@ func _on_interaction_field_area_entered(area):
 				_resource_load["type"] = ""
 				_resource_load["number"] = 0
 				set_animation_style("Default")
+				_current_state = State.WALKING
 				set_change_dir_interval(change_dir_interval)
 				_dir = -_dir
 				_limit_direction_flip = false
