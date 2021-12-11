@@ -1,7 +1,7 @@
 extends "res://entities/base_ant.gd"
 
 export (float) var change_dir_interval = 1.0
-export (float) var backpacker_change_dir_interval = 0.1
+export (float) var backpacker_change_dir_interval = 0.1 * change_dir_interval
 export (int) var pheromone_range = 2
 export (float) var pheromone_cone_size = 180.0 / 180.0 * PI  # total angle of the cone in radians
 export (float) var direction_change_limit = 45.0 / 180.0 * PI
@@ -53,18 +53,42 @@ func _max(values: Array) -> float:
 		max_val = max(v, max_val)
 	return max_val
 
-func _weighted_sampling(visible_pheromones: Dictionary) -> Vector2:
+func _sample_dir(visible_pheromones: Dictionary) -> Vector2:
 	"""
 		Samples a direction for the ant to follow.
 
 		If the ant is carrying a resource, pick the direction that points towards the queen. Otherwise, randomly choose
 		a pheromone direction, and draw a direction from a normal centred on the pheromone dir.
 	"""
+	var chosen_dir = Vector2()
+
+	if _current_state != State.RESOURCE_WALKING:
+		var chosen_dir_idx = _sample_index(visible_pheromones['values'])
+		chosen_dir = visible_pheromones['directions'][chosen_dir_idx]
+	else:
+		# we're carrying resources, get the pheromone that's closer to the queen direction
+		var queen_dir = _get_queen_dir()
+		var angle = _get_angle(queen_dir, chosen_dir)
+		for dir in visible_pheromones['directions']:
+			var test_angle = _get_angle(queen_dir, dir)
+			if abs(test_angle) < abs(angle):
+				angle = test_angle
+				chosen_dir = dir
+			
+	return chosen_dir
+
+func _get_angle(v1: Vector2, v2: Vector2) -> float:
+	"""Return the angle between two vectors."""
+	var diff = v1 - v2
+	return atan2(diff.y, diff.x)
+	
+func _sample_index(values: Array) -> int:
+	"""Randomly sample an index of the given array, where the probability of an
+	index i being sampled is p(i)~values[i]."""
 	var p = randf()
-	var values = visible_pheromones['values']
 	var normalizer = _sum(values)
 	var chosen_dir_idx = len(values) - 1
-	
+
 	if normalizer == 0.0:
 		chosen_dir_idx = randi() % len(values)
 	var acc = 0.0
@@ -73,10 +97,16 @@ func _weighted_sampling(visible_pheromones: Dictionary) -> Vector2:
 		if p <= acc:
 			chosen_dir_idx = i
 			break
-	return visible_pheromones['directions'][chosen_dir_idx]
 	
-func _sample_random_dir() -> Vector2:
-	return Vector2(1.0, 0.0).rotated(_gen.randf_range(0.0, 2.0 * PI)) 
+	return chosen_dir_idx
+
+func _sample_random_dir(bias = null) -> Vector2:
+	var random_angle
+	if bias != null:
+		random_angle = _gen.randf_range(bias - PI/2, bias + PI/2)
+	else:
+		random_angle = _gen.randf_range(0.0, 2.0*PI)
+	return Vector2(1.0, 0.0).rotated(random_angle) 
 
 func _change_dir() -> Vector2:
 	_gen.randomize()
@@ -90,19 +120,28 @@ func _follow_pheromone() -> Vector2:
 	match pheromones:
 		[var values, var positions]:
 			var visible_pheromones = get_pheromones_in_cone(values, positions)
-			if len(visible_pheromones['values']) == 0 or _max(visible_pheromones['values']) == 0.0:
-				return _sample_random_dir()
-			return _weighted_sampling(visible_pheromones)
-	return _sample_random_dir()
+			if len(visible_pheromones['values']) != 0 and _max(visible_pheromones['values']) != 0.0:
+				return _sample_dir(visible_pheromones)
+
+	if _current_state != State.RESOURCE_WALKING:
+		return _sample_random_dir()
+	
+	var queen_dir = _get_queen_dir()
+	return _sample_random_dir(atan2(queen_dir.y, queen_dir.x))
+	
+
+func _get_queen_dir() -> Vector2:
+	return (globals.queen_pos - global_position).normalized()
 
 func get_pheromones_in_cone(values: Array, positions: Array) -> Dictionary:
 	"""Return a dictionary with the pheromone values and corresponding direction."""
 	var dirs: Array = []
 	var in_cone_values = []
 	for i in len(values):
+		var dist: float = (positions[i] - global_position).length()
 		var dir : Vector2 = (positions[i] - global_position).normalized()
 		var angle: float = abs(_dir.angle_to(dir))
-		if angle <= pheromone_cone_size / 2.0:
+		if angle <= pheromone_cone_size / 2.0 and dist > 20:
 			_sensed_pheromones.append(positions[i])
 			dirs.append(dir)
 			in_cone_values.append(values[i])

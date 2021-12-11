@@ -53,6 +53,10 @@ run/main_scene="res://main.tscn"
 config/icon="res://assets/sprites/ui/icon_clean.png"
 config/windows_native_icon="res://assets/game_icon.ico"
 
+[autoload]
+
+globals="*res://levels/globals.gd"
+
 [debug]
 
 settings/stdout/print_fps=true
