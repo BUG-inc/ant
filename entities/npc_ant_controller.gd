@@ -76,27 +76,35 @@ func _sample_random_dir() -> Vector2:
 func _change_dir() -> Vector2:
 	_gen.randomize()
 	if pheromone_map != null:
-		_sensed_pheromones = []
-		var pheromones = pheromone_map.get_pheromone_levels(global_position, pheromone_range)
-		match pheromones:
-			[]:
-				return _sample_random_dir()
-			[var values, var positions]:
-				# find pheromones in cone
-				var dirs: Array = []
-				var in_cone_values = []
-				for i in len(values):
-					var dir : Vector2 = (positions[i] - global_position).normalized()
-					var angle: float = abs(_dir.angle_to(dir))
-					if angle <= pheromone_cone_size / 2.0:
-						_sensed_pheromones.append(positions[i])
-						dirs.append(dir)
-						in_cone_values.append(values[i])
-				# in case we don't have any values in cone, sample a random direction
-				if len(in_cone_values) == 0 or _max(in_cone_values) == 0.0:
-					return _sample_random_dir()
-				return dirs[_weighted_sampling(in_cone_values)]
+		return _follow_pheromone()
 	return _sample_random_dir()
+
+func _follow_pheromone() -> Vector2:
+	_sensed_pheromones = []
+	var pheromones = pheromone_map.get_pheromone_levels(global_position, pheromone_range)
+	match pheromones:
+		[var values, var positions]:
+			var visible_pheromones = get_pheromones_in_cone(values, positions)
+			if len(visible_pheromones['values']) == 0 or _max(visible_pheromones['values']) == 0.0:
+				return _sample_random_dir()
+			return visible_pheromones['directions'][_weighted_sampling(visible_pheromones['values'])]
+	return _sample_random_dir()
+
+func get_pheromones_in_cone(values: Array, positions: Array) -> Dictionary:
+	"""Return a dictionary with the pheromone values and corresponding direction."""
+	var dirs: Array = []
+	var in_cone_values = []
+	for i in len(values):
+		var dir : Vector2 = (positions[i] - global_position).normalized()
+		var angle: float = abs(_dir.angle_to(dir))
+		if angle <= pheromone_cone_size / 2.0:
+			_sensed_pheromones.append(positions[i])
+			dirs.append(dir)
+			in_cone_values.append(values[i])
+	return {
+		'directions': dirs, 
+		'values': in_cone_values
+	}
 
 func _draw():
 	if enable_debug_drawing:
@@ -131,6 +139,6 @@ func _body_entered_interaction_field(body):
 	if is_enemy(body) and _current_state != State.ATTACKING and _resource_load["number"] == 0:
 		set_state(State.ATTACKING)
 		
-func _body_left_interaction_field(body):
+func _body_left_interaction_field(_body):
 	if _current_state == State.ATTACKING and _enemy_target == null:
 		set_state(State.WALKING)
