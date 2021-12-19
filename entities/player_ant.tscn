@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/base_ant.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player_ant.gd" type="Script" id=2]
 [ext_resource path="res://entities/player_interface.gd" type="Script" id=3]
 [ext_resource path="res://overlays/player_hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/utility/unveal_area.tscn" type="PackedScene" id=5]
 
 [node name="player" type="Node2D"]
 z_index = 10
@@ -33,6 +34,8 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
 [node name="player_hud" parent="base_ant" instance=ExtResource( 4 )]
+
+[node name="UnvealArea" parent="base_ant" instance=ExtResource( 5 )]
 
 [connection signal="adding_pheromone" from="base_ant" to="base_ant/player_hud" method="_on_base_ant_adding_pheromone"]
 [connection signal="dig_hole_signal" from="base_ant" to="." method="_on_base_ant_dig_hole_signal"]

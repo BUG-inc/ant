@@ -154,6 +154,7 @@ toggle_help={
 2d_physics/layer_4="resources"
 2d_physics/layer_5="enemy_npc"
 2d_physics/layer_6="gatherer"
+2d_physics/layer_7="mist"
 
 [physics]
 
