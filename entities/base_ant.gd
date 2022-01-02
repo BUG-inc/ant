@@ -82,6 +82,10 @@ func die():
 	rotation = 0.0 # PI/2.0
 	emit_signal("ant_dead")
 	set_state(State.DEAD)
+	# remove all collision bits and set dead entitiy bit
+	for i in range(32):
+		set_collision_layer_bit(i, false)
+	set_collision_layer_bit(DEAD_ENTITIES_BIT, true)
 	
 func is_enemy(body):
 	if body.has_method("is_dead"):

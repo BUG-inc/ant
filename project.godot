@@ -165,6 +165,7 @@ toggle_help={
 2d_physics/layer_5="enemy_npc"
 2d_physics/layer_6="gatherer"
 2d_physics/layer_7="mist"
+2d_physics/layer_8="dead_entities"
 
 [physics]
 

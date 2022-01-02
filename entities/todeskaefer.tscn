@@ -129,9 +129,9 @@ scale = Vector2( 1.70334, 1.29387 )
 polygon = PoolVector2Array( -5, -12, -9, -21, 10, -21, 6, -12 )
 
 [node name="SenseArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 19
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SenseArea"]
 position = Vector2( 0, -4 )
@@ -140,3 +140,5 @@ shape = SubResource( 5 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="BiteArea" to="." method="_on_BiteArea_body_entered"]
 [connection signal="body_exited" from="BiteArea" to="." method="_on_BiteArea_body_exited"]
+[connection signal="body_entered" from="SenseArea" to="." method="_on_SenseArea_body_entered"]
+[connection signal="body_exited" from="SenseArea" to="." method="_on_SenseArea_body_exited"]

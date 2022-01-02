@@ -8,6 +8,9 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# cover the world with mist
+	if get_node_or_null("Mist") == null:
+		print("Warning: No mist tilemap found in level.")
+		return
 	var bounding_box : Rect2 = $Background.get_used_rect()
 	var min_cell : Vector2 = bounding_box.position
 	var max_cell : Vector2 = bounding_box.position + bounding_box.size
