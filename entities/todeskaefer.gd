@@ -40,7 +40,6 @@ func set_orientation(angle: float):
 	"""
 	Set the walking orientation of the Kaefer.
 	"""
-	print("Setting orientation of Todeskaefer to " + str(angle))
 	_time_since_dir_change = 0.0
 	_dir = Vector2(1, 0).rotated(angle)
 	rotation = atan2(_dir.y, _dir.x) + PI / 2
@@ -86,7 +85,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_SenseArea_body_entered(body):
 	if is_eadible(body) and _current_state == State.WALKING:
-		print("Ant entered sensing area")
 		# TODO maybe we should look into using behaviour trees here.
 		# TODO we miss ants that enter the sense area while we are killing another one
 		# change orientation so that the body is in front of us
