@@ -96,6 +96,9 @@ func _empty_cell(x: int, y: int) -> bool:
 func _on_player_dig_hole(position):
 	if $Foreground.has_method("dig_hole"):
 		$Foreground.dig_hole(position)
+		var tilemap_pos = $Foreground.world_to_map(position)
+		_try_to_add_astar(tilemap_pos.x, tilemap_pos.y)
+		_connect_astar(tilemap_pos.x, tilemap_pos.y)
 
 func _on_clear_mist(position, radius):
 	if $Mist.has_method("unveil"):
