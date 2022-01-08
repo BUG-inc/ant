@@ -7,7 +7,6 @@ export var width = 100
 export var height = 100
 export var cell_height = 10
 export var cell_width = 10
-export var PHEROMONE_INCREMENT = 0.1
 export var debug_mode = false
 export var pheromone_cleaning_radius = 1  # radius for cleaning pheromones in a grid (e.g.: if 2, cleans in a 2x2 square)
 # each cell stores pheromones
@@ -57,10 +56,14 @@ func get_pheromone_levels(position: Vector2, radius: int) -> Array:
 			positions.append(get_cell_position(h, w))
 	return [values, positions]
 
-func add_pheromone(position: Vector2,  increment: float = PHEROMONE_INCREMENT):
+func add_pheromone(position: Vector2,  cost = 0):
+	"""
+	Add a pheromone with a given cost. Cost is used by ants to determine which pheromone cell to follow, if they can
+	spot more than one.
+	"""
 	var cell_index = get_cell_index(position)
 	if cell_index != null:
-		cells[cell_index[0]][cell_index[1]] = clamp(cells[cell_index[0]][cell_index[1]] + increment, 0, 0.5)
+		cells[cell_index[0]][cell_index[1]] = cost
 		if not pheromones.has(cell_index):
 			var new_particles = _pheromone.instance()
 			new_particles.position = get_cell_position(cell_index[0], cell_index[1])

@@ -30,7 +30,7 @@ func _ready():
 
 	if Engine.editor_hint:
 		_show_astar_costs(queen_finder, tile_id_map[queen_in_tilemap])
-
+	
 func set_queen_position(pos: Vector2):
 	"""
 	Set the location of the queen's position, to update the queen_finder .
