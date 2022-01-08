@@ -1,20 +1,29 @@
+class_name BaseAnt
 extends "res://entities/entity.gd"
 
-class_name BaseAnt
-
-export (int) var speed = 200
-export (int) var break_speed = 5
+# mist uncovering parameters
+export (bool) var emit_clear_mist_signal = false;
+export (float) var clear_mist_radius = 50.0;
+export (float) var mist_signal_position_delta = 5.0;  # only emit a new signal to clear mist if you moved by this distance
+var _last_mist_signal_position := Vector2(0.0, 0.0);
+# Movement parameters
+export (int) var speed = 200;
+export (int) var break_speed = 5;
 var _dir = Vector2()
 var velocity = Vector2()
+# game logic parameters
 var pheromone_map: PheromoneMap = null
 var queen : Queen = null
-var active_sprite = null
 export (int) var hit_points = 3
+# animation parameters
+var active_sprite = null
 var _death_animation_finished: bool = false
-
+# fighting and interaction parameters
 var _bodies_in_interaction_field = []
 var _enemy_target: BaseAnt = null
+# signals
 signal ant_dead
+signal clear_mist(position, radius);
 
 enum State {
 	WALKING=0
@@ -74,6 +83,10 @@ func die():
 	rotation = 0.0 # PI/2.0
 	emit_signal("ant_dead")
 	set_state(State.DEAD)
+	# remove all collision bits and set dead entitiy bit
+	for i in range(32):
+		set_collision_layer_bit(i, false)
+	set_collision_layer_bit(DEAD_ENTITIES_BIT, true)
 	
 func is_enemy(body):
 	if body.has_method("is_dead"):
@@ -104,6 +117,13 @@ func _process(_delta: float) -> void:
 			set_state(State.IDLE)
 	elif not is_equal_approx(velocity.length(), 0) and _current_state == State.IDLE:
 		set_state(State.WALKING)
+	_process_mist()
+
+func _process_mist():
+	if _current_state != State.DEAD and emit_clear_mist_signal:
+		if _last_mist_signal_position.distance_to(global_position) > mist_signal_position_delta:
+			emit_signal("clear_mist", global_position, clear_mist_radius)
+			_last_mist_signal_position = Vector2(global_position)
 
 func _update_animation(dir: Vector2) -> void:
 	if _current_state == State.ATTACKING:

@@ -10,6 +10,8 @@ script = ExtResource( 2 )
 [node name="base_ant" parent="." groups=["npc_ants"] instance=ExtResource( 1 )]
 collision_layer = 2
 script = ExtResource( 4 )
+emit_clear_mist_signal = true
+clear_mist_radius = 20.0
 speed = 40
 
 [node name="interaction_field" parent="base_ant" index="1"]

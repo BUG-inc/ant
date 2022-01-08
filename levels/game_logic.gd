@@ -12,10 +12,10 @@ func set_player_mode(val: bool):
 		if _camera:
 			_camera.set_active(!val, _player.position + _player.get_node("base_ant").position)
 
-
 func _ready():
 	set_player_mode(true)
 	_init_ant_no()
+	_init_camera()
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause_menu") && !get_tree().paused:
@@ -25,10 +25,8 @@ func _process(delta):
 	else:
 		if _player && Input.is_action_just_pressed("camera_swap"):
 			set_player_mode(!_player_mode)
-
 		if !_player_mode:
 			_management_loop(delta)
-	
 
 func show_menu():
 	"""Display the pause menu."""	
@@ -51,6 +49,14 @@ func _init_ant_no():
 	_num_ants = len(ants)
 	$HUD/AntNo.text = str(_num_ants)
 
+func _init_camera():
+	var camera_node = get_node_or_null('camera')
+	if camera_node != null:
+		var bounding_box = $Level.get_bounding_box()
+		camera_node.min_x = bounding_box.position.x
+		camera_node.min_y = bounding_box.position.y
+		camera_node.max_x = bounding_box.position.x + bounding_box.size.x
+		camera_node.max_y = bounding_box.position.y + bounding_box.size.y
 
 func _management_loop(_delta):
 	if OS.is_debug_build() && Input.is_action_pressed("spawn"):
@@ -60,7 +66,6 @@ func _management_loop(_delta):
 	if OS.is_debug_build() && Input.is_action_just_pressed("kill"):
 		$AntMaster.killall()
 		$Level.position = Vector2()
-
 
 func _on_Queen_resource_update(type: String, number: int):
 	$HUD/ResourceNo.text = str(number)

@@ -11,6 +11,7 @@ script = ExtResource( 3 )
 
 [node name="base_ant" parent="." groups=["player"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+emit_clear_mist_signal = true
 speed = 75
 break_speed = 20
 tool_point = Vector2( 0, -25 )

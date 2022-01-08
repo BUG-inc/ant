@@ -4,6 +4,7 @@ class_name AntMaster
 var _npc_ant = preload("res://entities/npc_ant.tscn")
 signal ant_spawn
 signal ant_dead
+signal clear_mist(position, radius)
 
 func _ready():
 	var queen: Queen = get_node_or_null("Queen")
@@ -12,6 +13,9 @@ func _ready():
 			n.set_pheromones_map($PheromoneMap)
 		if queen != null and n.has_method("set_queen"):
 			n.set_queen($Queen)
+		var base_ant = n.get_node_or_null('base_ant')
+		if base_ant != null:
+			base_ant.connect("clear_mist", self, "_on_clear_mist")
 	if queen != null:
 		$Queen.connect("birthing", self, "_on_queen_birthing")
 
@@ -38,6 +42,7 @@ func _create_ant():
 	add_child(new_ant)
 	emit_signal("ant_spawn")
 	new_ant.get_node("base_ant").connect("ant_dead", self, "_on_ant_dead")
+	new_ant.get_node("base_ant").connect("clear_mist", self, "_on_clear_mist")
 	return new_ant
 
 func _on_queen_birthing(position: Vector2):
@@ -48,3 +53,6 @@ func _on_queen_birthing(position: Vector2):
 
 func _on_ant_dead():
 	emit_signal("ant_dead")
+
+func _on_clear_mist(position, radius):
+	emit_signal("clear_mist", position, radius)
