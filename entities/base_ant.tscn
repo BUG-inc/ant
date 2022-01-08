@@ -623,7 +623,7 @@ tracks/11/keys = {
 }
 
 [sub_resource type="Animation" id=46]
-resource_name = "walking"
+resource_name = "resource_walking"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -818,6 +818,7 @@ anims/breaking = SubResource( 51 )
 anims/dead = SubResource( 49 )
 anims/hurting = SubResource( 50 )
 anims/idle = SubResource( 48 )
+anims/resource_walking = SubResource( 46 )
 anims/walking = SubResource( 46 )
 
 [node name="Chief" type="Sprite" parent="."]
