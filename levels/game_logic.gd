@@ -16,6 +16,7 @@ func _ready():
 	set_player_mode(true)
 	_init_ant_no()
 	_init_camera()
+	_init_level()
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause_menu") && !get_tree().paused:
@@ -57,6 +58,12 @@ func _init_camera():
 		camera_node.min_y = bounding_box.position.y
 		camera_node.max_x = bounding_box.position.x + bounding_box.size.x
 		camera_node.max_y = bounding_box.position.y + bounding_box.size.y
+
+func _init_level():
+	"""
+	Pass the queen's location to the level interface.
+	"""
+	$Level.set_queen_position($AntMaster/Queen.get_position())
 
 func _management_loop(_delta):
 	if OS.is_debug_build() && Input.is_action_pressed("spawn"):
