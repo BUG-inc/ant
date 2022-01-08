@@ -78,10 +78,6 @@ func _on_Queen_resource_update(type: String, number: int):
 	$HUD/ResourceNo.text = str(number)
 
 
-func _on_player_dig_hole(position):
-	$Level/Foreground.dig_hole(position)
-
-
 func _on_main_menu_Button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene("res://main.tscn")

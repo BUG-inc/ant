@@ -3776,7 +3776,7 @@ position = Vector2( 1159, 113 )
 [connection signal="ant_dead" from="AntMaster" to="." method="_on_AntMaster_ant_dead"]
 [connection signal="ant_spawn" from="AntMaster" to="." method="_on_AntMaster_ant_spawn"]
 [connection signal="clear_mist" from="AntMaster" to="Level" method="_on_clear_mist"]
-[connection signal="dig_hole" from="AntMaster/player" to="." method="_on_player_dig_hole"]
+[connection signal="dig_hole" from="AntMaster/player" to="Level" method="_on_player_dig_hole"]
 [connection signal="resource_update" from="AntMaster/Queen" to="." method="_on_Queen_resource_update"]
 [connection signal="pressed" from="pause_menu/menu/Button" to="." method="_on_main_menu_Button_pressed"]
 
