@@ -66,22 +66,12 @@ func _sample_dir(visible_pheromones: Dictionary) -> Vector2:
 		var chosen_dir_idx = _sample_index(visible_pheromones['values'])
 		chosen_dir = visible_pheromones['directions'][chosen_dir_idx]
 	else:
-		# we're carrying resources, get the pheromone that's closer to the queen direction
-		var queen_dir = _get_queen_dir()
-		var angle = _get_angle(queen_dir, chosen_dir)
-		for dir in visible_pheromones['directions']:
-			var test_angle = _get_angle(queen_dir, dir)
-			if abs(test_angle) < abs(angle):
-				angle = test_angle
-				chosen_dir = dir
+		# TODO: choose the direction of the pheromone that has the lowest AStar cost to the queen
+		var chosen_dir_idx = _sample_index(visible_pheromones['values'])
+		chosen_dir = visible_pheromones['directions'][chosen_dir_idx]
 			
 	return chosen_dir
 
-func _get_angle(v1: Vector2, v2: Vector2) -> float:
-	"""Return the angle between two vectors."""
-	var diff = v1 - v2
-	return atan2(diff.y, diff.x)
-	
 func _sample_index(values: Array) -> int:
 	"""Randomly sample an index of the given array, where the probability of an
 	index i being sampled is p(i)~values[i]."""
@@ -123,16 +113,8 @@ func _follow_pheromone() -> Vector2:
 			if len(visible_pheromones['values']) != 0 and _max(visible_pheromones['values']) != 0.0:
 				return _sample_dir(visible_pheromones)
 
-	if _current_state != State.RESOURCE_WALKING:
-		return _sample_random_dir()
+	return _sample_random_dir()
 	
-	var queen_dir = _get_queen_dir()
-	return _sample_random_dir(atan2(queen_dir.y, queen_dir.x))
-	
-
-func _get_queen_dir() -> Vector2:
-	return (globals.queen_pos - global_position).normalized()
-
 func get_pheromones_in_cone(values: Array, positions: Array) -> Dictionary:
 	"""Return a dictionary with the pheromone values and corresponding direction."""
 	var dirs: Array = []
